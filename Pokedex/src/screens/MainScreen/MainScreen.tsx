@@ -13,7 +13,7 @@ const MainScreen = () => {
                 <Text style={style.title} >Pokédex</Text>
                 <Text style={style.subTitle}>Search for Pokémon by name or using the National Pokédex number.</Text>
                 <View style={style.textInputContainer}>
-                    <TextInput placeholder="What Pokémon are you looking for?" />
+                    <TextInput style={style.textInput} placeholder="What Pokémon are you looking for?" />
                 </View>
             </View>
         </View>
@@ -37,6 +37,7 @@ const style = StyleSheet.create({
     },
     title: {
         fontWeight: 'bold',
+        fontFamily: 'sf-pro-display-bold',
         color: 'black',
         fontSize: 34,
         margin: 8,
@@ -44,13 +45,18 @@ const style = StyleSheet.create({
     },
     subTitle: {
         fontSize: 20,
-        color: '#666',
+        fontFamily: 'sf-pro-display-regular',
+        color: '#999',
         margin: 8
     },
     textInputContainer: {
         backgroundColor: '#eee',
         borderRadius: 8,
         margin: 8
+    },
+    textInput: {
+        fontSize: 18,
+        fontFamily: 'sf-pro-display-medium',
     }
 });
 
