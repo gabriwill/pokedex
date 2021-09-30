@@ -34,6 +34,7 @@ const MainScreen = () => {
                 </View>
                 <View style={style.pokemonsList}>
                     <PokemonCard />
+                    <PokemonCard />
                 </View>
             </View>
         </View>
@@ -92,7 +93,7 @@ const style = StyleSheet.create({
         fontFamily: 'sf-pro-display-medium',
     },
     pokemonsList:{
-        
+        marginTop: 16
     }
 });
 

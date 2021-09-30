@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image } from "react-native";
 
 import Pokeball from '../../../assets/patterns/pokeball-white.svg';
 import GridPattern from '../../../assets/patterns/6x3-white.svg';
+import TypeCard from "../TypeCard";
 
 const PokemonCard = () =>{
 
@@ -12,15 +13,15 @@ const PokemonCard = () =>{
                 <GridPattern height={(171/75)*120} width={120} fillOpacity={0.2}/>
             </View>
             <View style={style.pokeball}>
-                <Pokeball height={160} width={160} fillOpacity={0.2}/>
+                <Pokeball height={180} width={180} fillOpacity={0.2}/>
             </View>
             
             <View style={style.dataContainer}>
                 <Text style={style.pokemonId}>#001</Text>
                 <Text style={style.pokemonName}>Bulbasaur</Text>
                 <View style={style.typesRow}>
-                    <Text>Grass</Text>
-                    <Text>Poison</Text>
+                    <TypeCard type='grass'/>
+                    <TypeCard type='poison' />
                 </View>
             </View>
             <View>
@@ -37,7 +38,7 @@ const style = StyleSheet.create({
     container:{
         backgroundColor: '#8bbe8a',
         borderRadius: 8,
-        height: 130, 
+        height: 150, 
         marginHorizontal: 8,
         marginVertical: 16, 
         flexDirection: 'row',
@@ -63,18 +64,18 @@ const style = StyleSheet.create({
         flexDirection: 'row'
     },
     pokemonImg:{
-        height: 150,
-        width: 150,
+        height: 160,
+        width: 160,
         marginTop: -25,
     },
     pokeball:{
         position: 'absolute',
         top: -10,
-        right: -5
+        right: -15
     },
     gridPattern:{
         position: 'absolute',
-        bottom: -20,
+        bottom: 0,
         left: 90 
     }
 })
