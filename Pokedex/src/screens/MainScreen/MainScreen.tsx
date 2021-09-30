@@ -1,6 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, TextInput, View } from 'react-native'
+import PokemonCard from "../../components/PokemonCard";
 import Pokeball from '../../../assets/patterns/pokeball-grad.svg';
+import Search from '../../../assets/icons/search.svg';
+import Generations from '../../../assets/icons/generation.svg';
+import Filter from '../../../assets/icons/filter.svg';
+import Sort from '../../../assets/icons/sort.svg';
 
 const MainScreen = () => {
 
@@ -9,11 +14,26 @@ const MainScreen = () => {
             <View style={style.pokeball}>
                 <Pokeball height={500} width={500} />
             </View>
+            <View style={style.optionsBar}>
+                <View style={style.optionsItens}>
+                    <Generations height={32} width={32} />
+                </View>
+                <View style={style.optionsItens}>
+                    <Sort height={32} width={32} />
+                </View>
+                <View style={style.optionsItens}>
+                    <Filter height={32} width={32} />
+                </View>
+            </View>
             <View style={style.contentContainer}>
                 <Text style={style.title} >Pokédex</Text>
                 <Text style={style.subTitle}>Search for Pokémon by name or using the National Pokédex number.</Text>
                 <View style={style.textInputContainer}>
+                    <Search height={24} width={24}/>
                     <TextInput style={style.textInput} placeholder="What Pokémon are you looking for?" />
+                </View>
+                <View style={style.pokemonsList}>
+                    <PokemonCard />
                 </View>
             </View>
         </View>
@@ -26,8 +46,17 @@ const style = StyleSheet.create({
         height: '100%',
         width: '100%',
     },
+    optionsBar:{
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        padding: 16
+    },
+    optionsItens:{
+        padding: 16
+    },
     contentContainer: {
-        padding: 24
+        paddingHorizontal: 24,
     },
     pokeball: {
         width: '100%',
@@ -41,7 +70,6 @@ const style = StyleSheet.create({
         color: 'black',
         fontSize: 34,
         margin: 8,
-        marginTop:32
     },
     subTitle: {
         fontSize: 20,
@@ -52,11 +80,19 @@ const style = StyleSheet.create({
     textInputContainer: {
         backgroundColor: '#eee',
         borderRadius: 8,
-        margin: 8
+        margin: 8,
+        padding: 8,
+        paddingHorizontal: 16,
+        flexDirection: 'row',
+        alignItems: 'center'
     },
     textInput: {
-        fontSize: 18,
+        fontSize: 20,
+        marginHorizontal: 10,
         fontFamily: 'sf-pro-display-medium',
+    },
+    pokemonsList:{
+        
     }
 });
 
