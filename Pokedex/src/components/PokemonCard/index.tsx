@@ -4,11 +4,33 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import Pokeball from '../../../assets/patterns/pokeball-white.svg';
 import GridPattern from '../../../assets/patterns/6x3-white.svg';
 import TypeCard from "../TypeCard";
+import { IPokemonData } from "../../utils/Types";
+import PokeTypes from "../../utils/PokeTypes";
 
-const PokemonCard = () =>{
+interface Props {
+    pokemon: IPokemonData
+}
+
+const PokemonCard = ({ pokemon }: Props) =>{
+
+    function idToIDString(id: number) {
+        let text = `#${id}`
+        if(id<10) {
+            text = `#00${id}`
+        }else if(id<100){
+            text = `#0${id}`
+        }
+        return text
+    }
+
+    const pokemonType = PokeTypes.find(element => element.name.toLowerCase() === pokemon.types[0].type.toLowerCase()) || PokeTypes[0]
+
+    function capitalize(s: string){
+        return s[0].toUpperCase() + s.slice(1);
+    }
 
     return (
-        <View style={style.container}>
+        <View style={[style.container,{backgroundColor: pokemonType.backgroundColor}]}>
             <View style={style.gridPattern}>
                 <GridPattern height={(171/75)*120} width={120} fillOpacity={0.2}/>
             </View>
@@ -17,17 +39,20 @@ const PokemonCard = () =>{
             </View>
             
             <View style={style.dataContainer}>
-                <Text style={style.pokemonId}>#001</Text>
-                <Text style={style.pokemonName}>Bulbasaur</Text>
+                <Text style={[style.pokemonId,{color: pokemonType.fontColor}]}>{idToIDString(pokemon.id)}</Text>
+                <Text style={style.pokemonName}>{capitalize(pokemon.name)}</Text>
                 <View style={style.typesRow}>
-                    <TypeCard type='grass'/>
-                    <TypeCard type='poison' />
+                    {pokemon.types.map(e=> <TypeCard key={e.type} type={e.type.toLowerCase()}/>)}
                 </View>
             </View>
             <View>
                 <Image 
                     style={style.pokemonImg} 
-                    source={require('../../../assets/generations/generation1/001.png')} />
+                    
+                    source={{
+                        uri: pokemon.image_url,
+                      }}
+                    />
             </View>
             
         </View>
@@ -36,7 +61,7 @@ const PokemonCard = () =>{
 
 const style = StyleSheet.create({
     container:{
-        backgroundColor: '#8bbe8a',
+        backgroundColor: '#aaa',
         borderRadius: 8,
         height: 150, 
         marginHorizontal: 8,
@@ -50,7 +75,7 @@ const style = StyleSheet.create({
         paddingLeft: 8
     },
     pokemonId:{
-        color: '#49604c',
+        color: '#000',
         fontSize: 16,
         fontFamily: 'sf-pro-display-bold'
     },

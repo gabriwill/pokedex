@@ -6,6 +6,21 @@ import Search from '../../../assets/icons/search.svg';
 import Generations from '../../../assets/icons/generation.svg';
 import Filter from '../../../assets/icons/filter.svg';
 import Sort from '../../../assets/icons/sort.svg';
+import { IPokemonData } from "../../utils/Types";
+
+const bulbasaur: IPokemonData = {
+    id: 1,
+    name: 'bulbasaur',
+    image_url: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png',
+    types: [{type: 'grass'},{type: 'poison'}]
+}
+
+const graveler: IPokemonData = {
+    id: 75,
+    name: 'graveler',
+    image_url: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/75.png',
+    types: [{type: 'rock'},{type: 'ground'}]
+}
 
 const MainScreen = () => {
 
@@ -33,8 +48,8 @@ const MainScreen = () => {
                     <TextInput style={style.textInput} placeholder="What Pokémon are you looking for?" />
                 </View>
                 <View style={style.pokemonsList}>
-                    <PokemonCard />
-                    <PokemonCard />
+                    <PokemonCard pokemon={bulbasaur} />
+                    <PokemonCard pokemon={graveler} />
                 </View>
             </View>
         </View>
