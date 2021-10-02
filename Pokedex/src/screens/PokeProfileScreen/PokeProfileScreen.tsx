@@ -2,7 +2,7 @@ import React from "react"
 import { Image, StyleSheet, Text, View } from "react-native"
 import { IPokemonData } from "../../utils/Types"
 
-import Pokeball from '../../../assets/patterns/pokeball-white.svg';
+import Pokeball from '../../../assets/patterns/pokeball-grad.svg';
 import GridPattern from '../../../assets/patterns/10x5.svg';
 import Circle from '../../../assets/patterns/circle.svg';
 import TypeCard from "../../components/TypeCard";
@@ -37,7 +37,7 @@ const PokeProfileScreen = ({ pokemon }: Props) => {
                 <GridPattern height={(161 / 75) * 200} width={200} fillOpacity={0.2} />
             </View>
             <View style={style.pokeball}>
-                <Pokeball height={120} width={120} fillOpacity={0.2} />
+                <Pokeball height={120} width={120} />
             </View>
             <View style={style.pokemonNameEffectView}>
                 <GradientText style={style.pokemonNameEffect}>{pokemon.name.toUpperCase()}</GradientText>
