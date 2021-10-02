@@ -17,6 +17,9 @@
 		98DD79573D9F4F0D8D6E8FD0 /* sf-pro-display-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 86FB13242F784DEFA97F966E /* sf-pro-display-bold.ttf */; };
 		1A145BFE8D7A49169DFA015F /* sf-pro-display-medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 55A67E0D4EAF49A28458F5C7 /* sf-pro-display-medium.ttf */; };
 		141142CFD2C243D984790425 /* sf-pro-display-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 81CFFA7C10094750881598A0 /* sf-pro-display-regular.ttf */; };
+		5091B4D941CD415BA1BAF3D7 /* MilestoneOutline.otf in Resources */ = {isa = PBXBuildFile; fileRef = 420687EAFA4A43A69CDBFC72 /* MilestoneOutline.otf */; };
+		6179EDE2ED694C8E8C2D4926 /* fenwick_ol_free.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9046BA1AE3584FCF8C0FB499 /* fenwick_ol_free.ttf */; };
+		7F1AEF7680834ABEAEC74365 /* Goffik-O.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2609E097A8DD4832A2D7693E /* Goffik-O.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +53,9 @@
 		86FB13242F784DEFA97F966E /* sf-pro-display-bold.ttf */ = {isa = PBXFileReference; name = "sf-pro-display-bold.ttf"; path = "../assets/fonts/sf-pro-display-bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		55A67E0D4EAF49A28458F5C7 /* sf-pro-display-medium.ttf */ = {isa = PBXFileReference; name = "sf-pro-display-medium.ttf"; path = "../assets/fonts/sf-pro-display-medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		81CFFA7C10094750881598A0 /* sf-pro-display-regular.ttf */ = {isa = PBXFileReference; name = "sf-pro-display-regular.ttf"; path = "../assets/fonts/sf-pro-display-regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		420687EAFA4A43A69CDBFC72 /* MilestoneOutline.otf */ = {isa = PBXFileReference; name = "MilestoneOutline.otf"; path = "../assets/fonts/MilestoneOutline.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9046BA1AE3584FCF8C0FB499 /* fenwick_ol_free.ttf */ = {isa = PBXFileReference; name = "fenwick_ol_free.ttf"; path = "../assets/fonts/fenwick_ol_free.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2609E097A8DD4832A2D7693E /* Goffik-O.ttf */ = {isa = PBXFileReference; name = "Goffik-O.ttf"; path = "../assets/fonts/Goffik-O.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +168,9 @@
 				86FB13242F784DEFA97F966E /* sf-pro-display-bold.ttf */,
 				55A67E0D4EAF49A28458F5C7 /* sf-pro-display-medium.ttf */,
 				81CFFA7C10094750881598A0 /* sf-pro-display-regular.ttf */,
+				420687EAFA4A43A69CDBFC72 /* MilestoneOutline.otf */,
+				9046BA1AE3584FCF8C0FB499 /* fenwick_ol_free.ttf */,
+				2609E097A8DD4832A2D7693E /* Goffik-O.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -266,6 +275,9 @@
 				98DD79573D9F4F0D8D6E8FD0 /* sf-pro-display-bold.ttf in Resources */,
 				1A145BFE8D7A49169DFA015F /* sf-pro-display-medium.ttf in Resources */,
 				141142CFD2C243D984790425 /* sf-pro-display-regular.ttf in Resources */,
+				5091B4D941CD415BA1BAF3D7 /* MilestoneOutline.otf in Resources */,
+				6179EDE2ED694C8E8C2D4926 /* fenwick_ol_free.ttf in Resources */,
+				7F1AEF7680834ABEAEC74365 /* Goffik-O.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

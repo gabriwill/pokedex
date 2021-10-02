@@ -10,12 +10,20 @@
 
 import React from 'react';
 import MainScreen from './src/screens/MainScreen/MainScreen';
+import PokeProfileScreen from './src/screens/PokeProfileScreen/PokeProfileScreen';
+import { IPokemonData } from './src/utils/Types';
 
+const bulbasaur: IPokemonData = {
+  id: 1,
+  name: 'bulbasaur',
+  image_url: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png',
+  types: [{type: 'grass'},{type: 'poison'}]
+}
 
 const App = () => {
   return (
     <>
-      <MainScreen />
+      <PokeProfileScreen pokemon={bulbasaur} />
     </>
   );
 };
