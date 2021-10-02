@@ -10,6 +10,7 @@ import PokeTypes from "../../utils/PokeTypes";
 import GradientText from "../../components/GradientText";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../RootStackParamsList";
+import { SharedElement } from "react-navigation-shared-element";
 
 type Props = NativeStackScreenProps<RootStackParamList,'PokeProfile'>;
 
@@ -48,6 +49,7 @@ const PokeProfileScreen = ({ navigation, route }: Props) => {
             </TouchableOpacity>
             <View style={style.imageContainer}>
                 <Circle style={style.circleImg} height={140} width={140} /> 
+                <SharedElement id={`${pokemon.id}`}>
                 <Image
                     style={style.pokemonImg}
 
@@ -55,6 +57,7 @@ const PokeProfileScreen = ({ navigation, route }: Props) => {
                         uri: pokemon.image_url,
                     }}
                 />
+                </SharedElement>
             </View>
             <View style={style.dataContainer}>
                 <Text style={[style.pokemonId, { color: pokemonType.fontColor }]}>{idToIDString(pokemon.id)}</Text>

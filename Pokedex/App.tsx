@@ -11,19 +11,27 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
+import { createSharedElementStackNavigator } from 'react-navigation-shared-element';
 import MainScreen from './src/screens/MainScreen/MainScreen';
 import PokeProfileScreen from './src/screens/PokeProfileScreen/PokeProfileScreen';
 import { RootStackParamList } from './src/screens/RootStackParamsList';
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const {Navigator,Screen} = createSharedElementStackNavigator<RootStackParamList>();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerShown:false}}>
-        <Stack.Screen name='Home' component={MainScreen} />
-        <Stack.Screen name='PokeProfile' component={PokeProfileScreen} />
-      </Stack.Navigator>
+      <Navigator initialRouteName='Home' screenOptions={{headerShown:false}}>
+        <Screen name='Home' component={MainScreen} />
+        <Screen 
+          name='PokeProfile' 
+          component={PokeProfileScreen} 
+          sharedElements={(route,otherRoute,showing)=>{
+            const { pokemon } = route.params;
+            return [`${pokemon.id}`]
+          }}
+        />
+      </Navigator>
     </NavigationContainer>
   );
 };
