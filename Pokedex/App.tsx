@@ -8,23 +8,23 @@
  * @format
  */
 
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import MainScreen from './src/screens/MainScreen/MainScreen';
 import PokeProfileScreen from './src/screens/PokeProfileScreen/PokeProfileScreen';
-import { IPokemonData } from './src/utils/Types';
+import { RootStackParamList } from './src/screens/RootStackParamsList';
 
-const bulbasaur: IPokemonData = {
-  id: 1,
-  name: 'bulbasaur',
-  image_url: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png',
-  types: [{type: 'grass'},{type: 'poison'}]
-}
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const App = () => {
   return (
-    <>
-      <PokeProfileScreen pokemon={bulbasaur} />
-    </>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{headerShown:false}}>
+        <Stack.Screen name='Home' component={MainScreen} />
+        <Stack.Screen name='PokeProfile' component={PokeProfileScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 

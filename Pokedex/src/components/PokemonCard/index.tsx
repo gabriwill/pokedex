@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, Button, TouchableOpacity } from "react-native";
 
 import Pokeball from '../../../assets/patterns/pokeball-white.svg';
 import GridPattern from '../../../assets/patterns/6x3-white.svg';
@@ -8,10 +8,16 @@ import { IPokemonData } from "../../utils/Types";
 import PokeTypes from "../../utils/PokeTypes";
 
 interface Props {
-    pokemon: IPokemonData
+    pokemon: IPokemonData,
+    navigation: any
 }
 
-const PokemonCard = ({ pokemon }: Props) =>{
+const PokemonCard = ({ pokemon,navigation }: Props) =>{
+    //const navigator = useNavigation<HomeScreenProps>();
+
+    const onPress = ()=>{
+        navigation.navigate('PokeProfile',{pokemon})
+    }
 
     function idToIDString(id: number) {
         let text = `#${id}`
@@ -30,7 +36,10 @@ const PokemonCard = ({ pokemon }: Props) =>{
     }
 
     return (
-        <View style={[style.container,{backgroundColor: pokemonType.backgroundColor}]}>
+        <TouchableOpacity 
+            style={[style.container,{backgroundColor: pokemonType.backgroundColor}]} 
+            onPress={onPress}
+            >
             <View style={style.gridPattern}>
                 <GridPattern height={(171/75)*120} width={120} fillOpacity={0.2}/>
             </View>
@@ -55,7 +64,7 @@ const PokemonCard = ({ pokemon }: Props) =>{
                     />
             </View>
             
-        </View>
+        </TouchableOpacity>
     )
 }
 

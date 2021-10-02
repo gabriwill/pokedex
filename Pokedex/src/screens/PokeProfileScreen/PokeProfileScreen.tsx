@@ -1,19 +1,20 @@
 import React from "react"
-import { Image, StyleSheet, Text, View } from "react-native"
-import { IPokemonData } from "../../utils/Types"
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 
 import Pokeball from '../../../assets/patterns/pokeball-grad.svg';
 import GridPattern from '../../../assets/patterns/10x5.svg';
 import Circle from '../../../assets/patterns/circle.svg';
+import BackSvg from '../../../assets/icons/back.svg'
 import TypeCard from "../../components/TypeCard";
 import PokeTypes from "../../utils/PokeTypes";
-import GradientText from "../../components/GradientText/GradientText";
+import GradientText from "../../components/GradientText";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../RootStackParamsList";
 
-interface Props {
-    pokemon: IPokemonData
-}
+type Props = NativeStackScreenProps<RootStackParamList,'PokeProfile'>;
 
-const PokeProfileScreen = ({ pokemon }: Props) => {
+const PokeProfileScreen = ({ navigation, route }: Props) => {
+    const pokemon = route.params.pokemon
 
     function idToIDString(id: number) {
         let text = `#${id}`
@@ -42,6 +43,9 @@ const PokeProfileScreen = ({ pokemon }: Props) => {
             <View style={style.pokemonNameEffectView}>
                 <GradientText style={style.pokemonNameEffect}>{pokemon.name.toUpperCase()}</GradientText>
             </View>
+            <TouchableOpacity style={style.backButton} onPress={()=>navigation.goBack()}>
+            <BackSvg height={30} width={30} />
+            </TouchableOpacity>
             <View style={style.imageContainer}>
                 <Circle style={style.circleImg} height={140} width={140} /> 
                 <Image
@@ -127,6 +131,10 @@ const style = StyleSheet.create({
         color: '#fff',
         textAlign: 'center',
         width: '100%',
+    },
+    backButton:{
+        position:'absolute',
+        top: 20
     }
 })
 

@@ -7,6 +7,8 @@ import Generations from '../../../assets/icons/generation.svg';
 import Filter from '../../../assets/icons/filter.svg';
 import Sort from '../../../assets/icons/sort.svg';
 import { IPokemonData } from "../../utils/Types";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../RootStackParamsList";
 
 const bulbasaur: IPokemonData = {
     id: 1,
@@ -22,7 +24,9 @@ const graveler: IPokemonData = {
     types: [{type: 'rock'},{type: 'ground'}]
 }
 
-const MainScreen = () => {
+export type HomeScreenProps = NativeStackScreenProps<RootStackParamList,'Home'>;
+
+const MainScreen = ({navigation}:HomeScreenProps) => {
 
     return (
         <View style={style.container}>
@@ -48,8 +52,8 @@ const MainScreen = () => {
                     <TextInput style={style.textInput} placeholder="What Pokémon are you looking for?" />
                 </View>
                 <View style={style.pokemonsList}>
-                    <PokemonCard pokemon={bulbasaur} />
-                    <PokemonCard pokemon={graveler} />
+                    <PokemonCard pokemon={bulbasaur} navigation={navigation} />
+                    <PokemonCard pokemon={graveler} navigation={navigation} />
                 </View>
             </View>
         </View>
