@@ -7,6 +7,7 @@ import GridPattern from '../../../assets/patterns/10x5.svg';
 import Circle from '../../../assets/patterns/circle.svg';
 import TypeCard from "../../components/TypeCard";
 import PokeTypes from "../../utils/PokeTypes";
+import GradientText from "../../components/GradientText/GradientText";
 
 interface Props {
     pokemon: IPokemonData
@@ -39,15 +40,10 @@ const PokeProfileScreen = ({ pokemon }: Props) => {
                 <Pokeball height={120} width={120} fillOpacity={0.2} />
             </View>
             <View style={style.pokemonNameEffectView}>
-                <View >
-                    <Text 
-                        numberOfLines={1} 
-                        style={style.pokemonNameEffect}
-                        >{pokemon.name.toUpperCase()}</Text>
-                </View>
+                <GradientText style={style.pokemonNameEffect}>{pokemon.name.toUpperCase()}</GradientText>
             </View>
             <View style={style.imageContainer}>
-                <Circle style={style.circleImg} height={140} width={140} fillOpacity={0.2} />
+                <Circle style={style.circleImg} height={140} width={140} /> 
                 <Image
                     style={style.pokemonImg}
 
@@ -71,7 +67,7 @@ const PokeProfileScreen = ({ pokemon }: Props) => {
 const style = StyleSheet.create({
     container: {
         backgroundColor: '#aaa',
-        height: 400,
+        height: 350,
         flexDirection: 'row',
         justifyContent: 'space-around',
         paddingHorizontal: 16
@@ -123,7 +119,7 @@ const style = StyleSheet.create({
         right: 0,
         alignItems: 'center',
         justifyContent: 'center',
-        
+
     },
     pokemonNameEffect: {
         fontFamily: 'Goffik-O',
@@ -131,7 +127,6 @@ const style = StyleSheet.create({
         color: '#fff',
         textAlign: 'center',
         width: '100%',
-        opacity: 0.2
     }
 })
 
