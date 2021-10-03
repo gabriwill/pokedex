@@ -1,5 +1,5 @@
 import React from "react"
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import { Dimensions, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 
 import Pokeball from '../../../assets/patterns/pokeball-grad.svg';
 import GridPattern from '../../../assets/patterns/10x5.svg';
@@ -11,12 +11,13 @@ import GradientText from "../../components/GradientText";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../RootStackParamsList";
 import { SharedElement } from "react-navigation-shared-element";
+import AboutCard from "../../components/AboutCard";
 
-type Props = NativeStackScreenProps<RootStackParamList,'PokeProfile'>;
+type Props = NativeStackScreenProps<RootStackParamList, 'PokeProfile'>;
 
 const PokeProfileScreen = ({ navigation, route }: Props) => {
     const pokemon = route.params.pokemon
-
+    
     function idToIDString(id: number) {
         let text = `#${id}`
         if (id < 10) {
@@ -34,45 +35,72 @@ const PokeProfileScreen = ({ navigation, route }: Props) => {
     }
 
     return (
-        <View style={[style.container, { backgroundColor: pokemonType.backgroundColor }]}>
-            <View style={style.gridPattern}>
-                <GridPattern height={(161 / 75) * 200} width={200} fillOpacity={0.2} />
-            </View>
-            <View style={style.pokeball}>
-                <Pokeball height={120} width={120} />
-            </View>
-            <View style={style.pokemonNameEffectView}>
-                <GradientText style={style.pokemonNameEffect}>{pokemon.name.toUpperCase()}</GradientText>
-            </View>
-            <TouchableOpacity style={style.backButton} onPress={()=>navigation.goBack()}>
-            <BackSvg height={30} width={30} />
-            </TouchableOpacity>
-            <View style={style.imageContainer}>
-                <Circle style={style.circleImg} height={140} width={140} /> 
-                <SharedElement id={`${pokemon.id}`}>
-                <Image
-                    style={style.pokemonImg}
-
-                    source={{
-                        uri: pokemon.image_url,
-                    }}
-                />
-                </SharedElement>
-            </View>
-            <View style={style.dataContainer}>
-                <Text style={[style.pokemonId, { color: pokemonType.fontColor }]}>{idToIDString(pokemon.id)}</Text>
-                <Text style={style.pokemonName}>{capitalize(pokemon.name)}</Text>
-                <View style={style.typesRow}>
-                    {pokemon.types.map(e => <TypeCard key={e.type} type={e.type.toLowerCase()} />)}
+        <View style={{ backgroundColor: '#fff', height: '100%' }}>
+            <View style={[style.cardContainer, { backgroundColor: pokemonType.backgroundColor }]}>
+                <View style={style.gridPattern}>
+                    <GridPattern height={(161 / 75) * 200} width={200} fillOpacity={0.2} />
                 </View>
-            </View>
+                <View style={style.pokeball}>
+                    <Pokeball height={120} width={120} />
+                </View>
+                <View style={style.pokemonNameEffectView}>
+                    <GradientText style={style.pokemonNameEffect}>{pokemon.name.toUpperCase()}</GradientText>
+                </View>
+                <TouchableOpacity style={style.backButton} onPress={() => navigation.goBack()}>
+                    <BackSvg height={30} width={30} />
+                </TouchableOpacity>
+                <View style={style.imageContainer}>
+                    <Circle style={style.circleImg} height={140} width={140} />
+                    <SharedElement id={`${pokemon.id}`}>
+                        <Image
+                            style={style.pokemonImg}
 
+                            source={{
+                                uri: pokemon.image_url,
+                            }}
+                        />
+                    </SharedElement>
+                </View>
+                <View style={style.dataContainer}>
+                    <Text style={[style.pokemonId, { color: pokemonType.fontColor }]}>{idToIDString(pokemon.id)}</Text>
+                    <Text style={style.pokemonName}>{capitalize(pokemon.name)}</Text>
+                    <View style={style.typesRow}>
+                        {pokemon.types.map(e => <TypeCard key={e.type} type={e.type.toLowerCase()} />)}
+                    </View>
+                </View>
+
+            </View>
+            <View style={style.infoContainer}>
+                <View style={style.infoMenuContainer}>
+                    <Text style={[style.infoMenuText, { opacity: 1, fontWeight: 'bold' }]}>About</Text>
+                    <Text style={[style.infoMenuText]}>Stats</Text>
+                    <Text style={[style.infoMenuText]}>Evolutions</Text>
+                </View>
+                <AboutCard pokemon={route.params.pokemon} />
+                
+            </View>
         </View>
     )
 }
 
 const style = StyleSheet.create({
-    container: {
+    infoMenuContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        paddingVertical: 16
+    },
+    infoMenuText: {
+        fontSize: 20,
+        color: "#fff",
+        opacity: 0.6,
+        fontFamily: 'sf-pro-display-regular'
+    },
+    infoContainer: {
+        marginTop: -100,
+        width: '100%'
+    },
+    cardContainer: {
         backgroundColor: '#aaa',
         height: 350,
         flexDirection: 'row',
@@ -88,12 +116,12 @@ const style = StyleSheet.create({
     },
     pokemonId: {
         color: '#000',
-        fontSize: 16,
+        fontSize: 18,
         fontFamily: 'sf-pro-display-bold'
     },
     pokemonName: {
         color: '#fff',
-        fontSize: 32,
+        fontSize: 36,
         fontFamily: 'sf-pro-display-bold',
         lineHeight: 40
     },
@@ -135,8 +163,8 @@ const style = StyleSheet.create({
         textAlign: 'center',
         width: '100%',
     },
-    backButton:{
-        position:'absolute',
+    backButton: {
+        position: 'absolute',
         top: 20
     }
 })

@@ -12,7 +12,7 @@ const TypeCard = ({type}:Props) =>{
 
     return (
         <View style={[style.container, {backgroundColor: pokemonType.color}]}>
-            {pokemonType.icon}
+            {pokemonType.icon()}
             <Text style={style.text}>{pokemonType.name}</Text>
         </View>
     )
