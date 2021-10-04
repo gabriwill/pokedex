@@ -19,8 +19,9 @@ const PokeProfileScreen = ({ navigation, route }: Props) => {
     const pokemon = route.params.pokemon
     const { height, width } = Dimensions.get('window');
     let menuList: any;
+    
     const scrollX = useRef(new Animated.Value(0)).current;
-    const values = scrollX.interpolate({
+    const translateX = scrollX.interpolate({
         inputRange: [0, width, width*2],
         outputRange: [0,120,260]
     });
@@ -28,6 +29,7 @@ const PokeProfileScreen = ({ navigation, route }: Props) => {
         inputRange: [0, width, width*2],
         outputRange: [i==0 ? 1:0.5, i==1? 1:0.5, i==2? 1:0.5]
     });
+
     const idToIDString= (id: number)=>{
         let text = `#${id}`
         if (id < 10) {
@@ -53,7 +55,7 @@ const PokeProfileScreen = ({ navigation, route }: Props) => {
                 <Animated.View 
                     style={[
                         style.pokeball,{
-                        transform:[{translateX: values}]}
+                        transform:[{translateX}]}
                     ]}>
                     <Pokeball height={120} width={120} />
                 </Animated.View>
