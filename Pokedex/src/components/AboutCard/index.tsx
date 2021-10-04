@@ -6,13 +6,13 @@ import { IPokemonData } from "../../utils/Types";
 interface Props { pokemon: IPokemonData}
 
 const AboutCard = ({pokemon}: Props)=>{
-    const { height } = Dimensions.get('window');
+    const { height,width } = Dimensions.get('window');
 
     const pokemonType = PokeTypes.find(element => element.name.toLowerCase() === pokemon.types[0].type.toLowerCase()) || PokeTypes[0];
 
     return (
-    <View style={style.infoCardContainer}>
-        <ScrollView style={{ width: '100%', height: height-380 }}>
+    <View style={[style.infoCardContainer,{width}]}>
+        <ScrollView style={{ width: '100%',  height: height-380}}>
             <Text style={style.infoCardTextDescription}>Sdnf jdj nsfjnekfnen jnrj nrkjnf rnjf nrjnf jkrn kjn kjrnkj nrk nrk krn kjnrkjn kjrn kjnrk nkren kjrenk rekj nfkerjnvkjoksdjk kn </Text>
             <Text style={[style.infoCardTitle, { color: pokemonType.color }]}>Pokédex Data</Text>
 
@@ -122,6 +122,7 @@ const AboutCard = ({pokemon}: Props)=>{
                     <Text style={style.attributeInfoText}>Medium Slow</Text>
                 </View>
             </View>
+            <View style={{height:20}} />
         </ScrollView>
     </View>);
 }
@@ -162,13 +163,13 @@ const style = StyleSheet.create({
     data: { 
         flexDirection: 'row', 
         width: '100%', 
-        marginTop: 24 
+        marginTop: 24,
     },
     dataTitle: {
-        flex: 0.35
+        flex: 0.35,
     },
     dataContent:{
-        flex: 0.65
+        flex: 0.65,
     }
 });
 
