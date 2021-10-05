@@ -12,6 +12,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../RootStackParamsList";
 import { SharedElement } from "react-navigation-shared-element";
 import AboutCard from "../../components/AboutCard";
+import EvolutionCard from "../../components/EvolutionCard";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'PokeProfile'>;
 
@@ -19,7 +20,7 @@ const PokeProfileScreen = ({ navigation, route }: Props) => {
     const pokemon = route.params.pokemon
     const { height, width } = Dimensions.get('window');
     let menuList: any;
-    
+
     const scrollX = useRef(new Animated.Value(0)).current;
     const translateX = scrollX.interpolate({
         inputRange: [0, width, width*2],
@@ -101,7 +102,7 @@ const PokeProfileScreen = ({ navigation, route }: Props) => {
                 <Animated.FlatList
                     data={[<AboutCard pokemon={route.params.pokemon} />,
                     <AboutCard pokemon={route.params.pokemon} />,
-                    <AboutCard pokemon={route.params.pokemon} />]}
+                    <EvolutionCard pokemon={route.params.pokemon} />]}
                     renderItem={({ item }) => item}
                     horizontal
                     pagingEnabled
