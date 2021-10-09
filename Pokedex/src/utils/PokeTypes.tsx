@@ -31,13 +31,6 @@ const size = 16
 
 const PokeTypes: Type[] = [
     {
-        icon: (height?:number,width?:number )=>(<NormalIcon height={height||size} width={width||size} color='#fff' />),
-        name: 'Unknown',
-        color: '#7d7d7d',
-        backgroundColor: '#C9C9C9',
-        fontColor: '#333333'
-    },
-    {
         icon: (height?:number,width?:number )=>(<GrassIcon height={height||size} width={width||size} color='#fff' />),
         name: 'Grass',
         color: '#62b957',
@@ -164,6 +157,18 @@ const PokeTypes: Type[] = [
         fontColor: '#5E768F'
     },
     
-]
+];
+
+const unknownType: Type = {
+    icon: (height?:number,width?:number )=>(<NormalIcon height={height||size} width={width||size} color='#fff' />),
+    name: 'Unknown',
+    color: '#7d7d7d',
+    backgroundColor: '#C9C9C9',
+    fontColor: '#333333'
+}
+
+export const findPokeTypeByName= (typeName:string): Type =>{
+    return PokeTypes.find(element => element.name.toLowerCase() === typeName.toLowerCase()) || unknownType
+};
 
 export default PokeTypes;

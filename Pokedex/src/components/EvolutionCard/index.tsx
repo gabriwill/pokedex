@@ -1,6 +1,6 @@
 import React from "react";
 import { Dimensions, Image, ScrollView, StyleSheet, Text, View } from "react-native";
-import PokeTypes from "../../utils/PokeTypes";
+import PokeTypes, { findPokeTypeByName } from "../../utils/PokeTypes";
 import { IPokemonData } from "../../utils/Types";
 
 interface Props { pokemon: IPokemonData }
@@ -8,11 +8,11 @@ interface Props { pokemon: IPokemonData }
 const EvolutionCard = ({ pokemon }: Props) => {
     const { height, width } = Dimensions.get('window');
 
-    const pokemonType = PokeTypes.find(element => element.name.toLowerCase() === pokemon.types[0].type.toLowerCase()) || PokeTypes[0];
+    const pokemonType = findPokeTypeByName(pokemon.types[0].type);
 
     return (
         <View style={[style.infoCardContainer, { width }]}>
-            <View style={{ width: '100%', height: height - 380 }}>
+            <ScrollView style={{ width: '100%', height: height - 380 }}>
                 <Text style={[style.infoCardTitle, { color: pokemonType.color }]}>Evolution Chart</Text>
                 <View style={style.lineSequence}>
                     <View>
@@ -37,17 +37,50 @@ const EvolutionCard = ({ pokemon }: Props) => {
                                 style={style.pokemonImg}
 
                                 source={{
-                                    uri: pokemon.image_url,
+                                    uri: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png',
                                 }}
                             />
                         </View>
                         <View style={style.dataContent}>
-                            <Text style={style.evolutionId}>#001</Text>
-                            <Text style={style.evolutionName}>Bulbasaur</Text>
+                            <Text style={style.evolutionId}>#002</Text>
+                            <Text style={style.evolutionName}>Ivysaur</Text>
                         </View>
                     </View>
                 </View>
-            </View>
+                <View style={style.lineSequence}>
+                    <View>
+                        <View style={style.imgView}>
+                            <Image
+                                style={style.pokemonImg}
+
+                                source={{
+                                    uri: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png',
+                                }}
+                            />
+                        </View>
+                        <View style={style.dataContent}>
+                            <Text style={style.evolutionId}>#002</Text>
+                            <Text style={style.evolutionName}>Ivysaur</Text>
+                        </View>
+                    </View>
+                    <Text style={style.textLevel}>(level 32)</Text>
+                    <View>
+                        <View style={style.imgView}>
+                            <Image
+                                style={style.pokemonImg}
+
+                                source={{
+                                    uri: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png',
+                                }}
+                            />
+                        </View>
+                        <View style={style.dataContent}>
+                            <Text style={style.evolutionId}>#003</Text>
+                            <Text style={style.evolutionName}>Venusaur</Text>
+                        </View>
+                    </View>
+                </View>
+            </ScrollView>
         </View>);
 }
 
@@ -70,12 +103,13 @@ const style = StyleSheet.create({
     lineSequence:{
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginBottom: 20
     },
     imgView: {
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#efefef',
+        backgroundColor: '#f3f3f3',
         padding: 16,
         borderRadius: 100,
         margin: 8

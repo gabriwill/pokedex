@@ -6,13 +6,14 @@ import GridPattern from '../../../assets/patterns/10x5.svg';
 import Circle from '../../../assets/patterns/circle.svg';
 import BackSvg from '../../../assets/icons/back.svg'
 import TypeCard from "../../components/TypeCard";
-import PokeTypes from "../../utils/PokeTypes";
+import PokeTypes, { findPokeTypeByName } from "../../utils/PokeTypes";
 import GradientText from "../../components/GradientText";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../RootStackParamsList";
 import { SharedElement } from "react-navigation-shared-element";
 import AboutCard from "../../components/AboutCard";
 import EvolutionCard from "../../components/EvolutionCard";
+import StatsCard from "../../components/StatsCard";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'PokeProfile'>;
 
@@ -40,8 +41,8 @@ const PokeProfileScreen = ({ navigation, route }: Props) => {
         }
         return text
     }
-
-    const pokemonType = PokeTypes.find(element => element.name.toLowerCase() === pokemon.types[0].type.toLowerCase()) || PokeTypes[0]
+    
+    const pokemonType = findPokeTypeByName(pokemon.types[0].type);
 
     const capitalize=(s: string)=> s[0].toUpperCase() + s.slice(1);
 
@@ -101,7 +102,7 @@ const PokeProfileScreen = ({ navigation, route }: Props) => {
                 </View>
                 <Animated.FlatList
                     data={[<AboutCard pokemon={route.params.pokemon} />,
-                    <AboutCard pokemon={route.params.pokemon} />,
+                    <StatsCard pokemon={route.params.pokemon} />,
                     <EvolutionCard pokemon={route.params.pokemon} />]}
                     renderItem={({ item }) => item}
                     horizontal

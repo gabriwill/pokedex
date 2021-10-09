@@ -1,6 +1,6 @@
 import React from "react";
 import { Dimensions, ScrollView, StyleSheet, Text, View } from "react-native";
-import PokeTypes from "../../utils/PokeTypes";
+import PokeTypes, { findPokeTypeByName } from "../../utils/PokeTypes";
 import { IPokemonData } from "../../utils/Types";
 
 interface Props { pokemon: IPokemonData}
@@ -8,7 +8,7 @@ interface Props { pokemon: IPokemonData}
 const AboutCard = ({pokemon}: Props)=>{
     const { height,width } = Dimensions.get('window');
 
-    const pokemonType = PokeTypes.find(element => element.name.toLowerCase() === pokemon.types[0].type.toLowerCase()) || PokeTypes[0];
+    const pokemonType = findPokeTypeByName(pokemon.types[0].type);
 
     return (
     <View style={[style.infoCardContainer,{width}]}>
@@ -58,6 +58,18 @@ const AboutCard = ({pokemon}: Props)=>{
                         style={{ 
                             justifyContent: 'center',
                             alignItems: 'center',
+                            backgroundColor: PokeTypes[8].color,
+                            padding: 4,
+                            marginRight:8,
+                            width: 32,
+                            height: 32,
+                            borderRadius:4
+                         }}
+                        >{PokeTypes[8].icon(20,20)}</View>
+                        <View 
+                        style={{ 
+                            justifyContent: 'center',
+                            alignItems: 'center',
                             backgroundColor: PokeTypes[9].color,
                             padding: 4,
                             marginRight:8,
@@ -66,18 +78,6 @@ const AboutCard = ({pokemon}: Props)=>{
                             borderRadius:4
                          }}
                         >{PokeTypes[9].icon(20,20)}</View>
-                        <View 
-                        style={{ 
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            backgroundColor: PokeTypes[10].color,
-                            padding: 4,
-                            marginRight:8,
-                            width: 32,
-                            height: 32,
-                            borderRadius:4
-                         }}
-                        >{PokeTypes[10].icon(20,20)}</View>
                 </View>
             </View>
             <Text style={[style.infoCardTitle, { color: pokemonType.color }]}>Training data</Text>
