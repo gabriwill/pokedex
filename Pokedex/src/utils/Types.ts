@@ -1,3 +1,5 @@
+import { Type } from "./PokeTypes"
+
 interface INameAndUrlObject {
     name: string, url: string
 }
@@ -63,11 +65,59 @@ export interface IPokemonApiResponse {
     weight: number
 }
 
-export interface IPokemonData {
+export interface IPokemonBasicData {
     id: number,
     name: string,
     image_url: string,
     types:{  
         type: string 
     }[]
+}
+export interface IPokemonData {
+    id: number,
+    name: string,
+    image_url: string,
+    types:{  
+        type: string 
+    }[],
+    description: string,
+    height: number,
+    weight: number,
+    baseFriendship: number,
+    baseExperience: number,
+    specieGenera: string,
+    habitat: string,
+    growRate: string,
+    typesWeakness:{  
+        type: string 
+    }[],
+    typesDefMutiple:{  
+        type: string,
+        mutiple: string 
+    }[],
+    typesAtkMutiple:{  
+        type: string,
+        mutiple: string 
+    }[],
+    stats:{ 
+        stat: string,
+        base_stat: number,  
+    }[],
+    abilities:{
+        name: string,
+        isHidden: boolean
+    }[],
+    evolutionChain:{
+        evolvesTo: IPokemonBasicData,
+        minLevel: number
+    }[]
+}
+
+export const pokemonDataToPokemonBasicData = ({ id, name, image_url, types } : IPokemonData):IPokemonBasicData=>{
+    return {id, name, image_url,types}
+}
+
+export interface CardProps { 
+    pokemon: IPokemonData ,
+    pokemonType: Type
 }

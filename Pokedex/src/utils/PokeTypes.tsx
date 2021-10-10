@@ -19,7 +19,7 @@ import RockIcon from '../../assets/types/rock.svg';
 import SteelIcon from '../../assets/types/steel.svg';
 import WaterIcon from '../../assets/types/water.svg';
 
-interface Type {
+export interface Type {
     icon:(height?:number,width?:number)=> Element,
     name: string,
     color: string,

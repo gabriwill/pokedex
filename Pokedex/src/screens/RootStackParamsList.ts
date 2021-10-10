@@ -1,6 +1,6 @@
-import { IPokemonData } from "../utils/Types";
+import { IPokemonBasicData } from "../utils/Types";
 
 export type RootStackParamList = {
     Home: undefined;
-    PokeProfile: { pokemon: IPokemonData};
+    PokeProfile: { pokemon: IPokemonBasicData};
 };

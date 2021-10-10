@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import PokeTypes from "../../utils/PokeTypes";
+import { findPokeTypeByName } from "../../utils/PokeTypes";
 
 interface Props {
     type: string
@@ -8,7 +8,7 @@ interface Props {
 
 const TypeCard = ({type}:Props) =>{
 
-    const pokemonType = PokeTypes.find(element => element.name.toLowerCase() === type.toLowerCase()) || PokeTypes[0]
+    const pokemonType = findPokeTypeByName(type)
 
     return (
         <View style={[style.container, {backgroundColor: pokemonType.color}]}>

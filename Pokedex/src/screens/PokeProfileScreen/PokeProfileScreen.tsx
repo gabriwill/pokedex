@@ -1,12 +1,12 @@
-import React, { ElementType, useEffect, useRef, useState } from "react"
-import { Animated, Dimensions, Image, ScrollView, StyleSheet, Text, Touchable, TouchableOpacity, View } from "react-native"
+import React, { useRef } from "react"
+import { Animated, Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 
 import Pokeball from '../../../assets/patterns/pokeball-grad.svg';
 import GridPattern from '../../../assets/patterns/10x5.svg';
 import Circle from '../../../assets/patterns/circle.svg';
 import BackSvg from '../../../assets/icons/back.svg'
 import TypeCard from "../../components/TypeCard";
-import PokeTypes, { findPokeTypeByName } from "../../utils/PokeTypes";
+import { findPokeTypeByName } from "../../utils/PokeTypes";
 import GradientText from "../../components/GradientText";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../RootStackParamsList";
@@ -14,6 +14,7 @@ import { SharedElement } from "react-navigation-shared-element";
 import AboutCard from "../../components/AboutCard";
 import EvolutionCard from "../../components/EvolutionCard";
 import StatsCard from "../../components/StatsCard";
+import { Repository } from "../../repository/Repository";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'PokeProfile'>;
 
@@ -21,6 +22,7 @@ const PokeProfileScreen = ({ navigation, route }: Props) => {
     const pokemon = route.params.pokemon
     const { height, width } = Dimensions.get('window');
     let menuList: any;
+    const pokemonData = Repository.getPokemonData(pokemon.id);
 
     const scrollX = useRef(new Animated.Value(0)).current;
     const translateX = scrollX.interpolate({
@@ -83,7 +85,7 @@ const PokeProfileScreen = ({ navigation, route }: Props) => {
                     <Text style={[style.pokemonId, { color: pokemonType.fontColor }]}>{idToIDString(pokemon.id)}</Text>
                     <Text style={style.pokemonName}>{capitalize(pokemon.name)}</Text>
                     <View style={style.typesRow}>
-                        {pokemon.types.map(e => <TypeCard key={e.type} type={e.type.toLowerCase()} />)}
+                        {pokemon.types.map(e => <TypeCard key={e.type} type={e.type} />)}
                     </View>
                 </View>
 
@@ -101,9 +103,9 @@ const PokeProfileScreen = ({ navigation, route }: Props) => {
                     </TouchableOpacity>
                 </View>
                 <Animated.FlatList
-                    data={[<AboutCard pokemon={route.params.pokemon} />,
-                    <StatsCard pokemon={route.params.pokemon} />,
-                    <EvolutionCard pokemon={route.params.pokemon} />]}
+                    data={[<AboutCard pokemon={pokemonData} pokemonType={pokemonType}  />,
+                    <StatsCard pokemon={pokemonData} pokemonType={pokemonType}  />,
+                    <EvolutionCard pokemon={pokemonData} pokemonType={pokemonType} />]}
                     renderItem={({ item }) => item}
                     horizontal
                     pagingEnabled

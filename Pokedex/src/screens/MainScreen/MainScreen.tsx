@@ -1,33 +1,26 @@
-import React from "react";
-import { StyleSheet, Text, TextInput, View } from 'react-native'
+import React, { useEffect, useState } from "react";
+import { FlatList, StyleSheet, Text, TextInput, View } from 'react-native'
 import PokemonCard from "../../components/PokemonCard";
 import Pokeball from '../../../assets/patterns/pokeball-grad.svg';
 import Search from '../../../assets/icons/search.svg';
 import Generations from '../../../assets/icons/generation.svg';
 import Filter from '../../../assets/icons/filter.svg';
 import Sort from '../../../assets/icons/sort.svg';
-import { IPokemonData } from "../../utils/Types";
+import { IPokemonBasicData } from "../../utils/Types";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../RootStackParamsList";
-
-const bulbasaur: IPokemonData = {
-    id: 1,
-    name: 'bulbasaur',
-    image_url: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png',
-    types: [{type: 'grass'},{type: 'poison'}]
-}
-
-const graveler: IPokemonData = {
-    id: 75,
-    name: 'graveler',
-    image_url: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/75.png',
-    types: [{type: 'rock'},{type: 'ground'}]
-}
+import { Repository } from "../../repository/Repository";
 
 export type HomeScreenProps = NativeStackScreenProps<RootStackParamList,'Home'>;
 
 const MainScreen = ({navigation}:HomeScreenProps) => {
+    const repository = new Repository();
+    const [update, updateList] = useState(false)
+    const [pokemonList, setPokemonList] = useState<IPokemonBasicData[]>([]);
 
+    useEffect(()=>{
+        setPokemonList(repository.getPokemonList())
+    },[update]);
     return (
         <View style={style.container}>
             <View style={style.pokeball}>
@@ -51,10 +44,13 @@ const MainScreen = ({navigation}:HomeScreenProps) => {
                     <Search height={24} width={24}/>
                     <TextInput style={style.textInput} placeholder="What Pokémon are you looking for?" />
                 </View>
-                <View style={style.pokemonsList}>
-                    <PokemonCard pokemon={bulbasaur} navigation={navigation} />
-                    <PokemonCard pokemon={graveler} navigation={navigation} />
-                </View>
+                <FlatList 
+                    style={style.pokemonsList}
+                    data={pokemonList}
+                    renderItem={({item})=>{
+                        return (<PokemonCard pokemon={item} navigation={navigation}/>)
+                    }}
+                />
             </View>
         </View>
     );

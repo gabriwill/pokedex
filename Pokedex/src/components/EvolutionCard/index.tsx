@@ -1,85 +1,71 @@
 import React from "react";
 import { Dimensions, Image, ScrollView, StyleSheet, Text, View } from "react-native";
-import PokeTypes, { findPokeTypeByName } from "../../utils/PokeTypes";
-import { IPokemonData } from "../../utils/Types";
+import { CardProps, pokemonDataToPokemonBasicData } from "../../utils/Types";
 
-interface Props { pokemon: IPokemonData }
-
-const EvolutionCard = ({ pokemon }: Props) => {
+const EvolutionCard = ({ pokemon, pokemonType }: CardProps) => {
     const { height, width } = Dimensions.get('window');
 
-    const pokemonType = findPokeTypeByName(pokemon.types[0].type);
+    const idToIDString= (id: number)=>{
+        let text = `#${id}`
+        if (id < 10) {
+            text = `#00${id}`
+        } else if (id < 100) {
+            text = `#0${id}`
+        }
+        return text
+    }
+
+    const capitalize=(s: string)=> s[0].toUpperCase() + s.slice(1);
 
     return (
         <View style={[style.infoCardContainer, { width }]}>
             <ScrollView style={{ width: '100%', height: height - 380 }}>
                 <Text style={[style.infoCardTitle, { color: pokemonType.color }]}>Evolution Chart</Text>
-                <View style={style.lineSequence}>
-                    <View>
-                        <View style={style.imgView}>
-                            <Image
-                                style={style.pokemonImg}
+                {pokemon.evolutionChain.map((value, index, arr) => {
+                    let evolvesFrom =pokemonDataToPokemonBasicData(pokemon);
+                    if(index!=0){
+                        evolvesFrom = arr[index-1].evolvesTo;
+                    }
+                    const minLevel = value.minLevel;
+                    const evolvesTo = value.evolvesTo;
 
-                                source={{
-                                    uri: pokemon.image_url,
-                                }}
-                            />
-                        </View>
-                        <View style={style.dataContent}>
-                            <Text style={style.evolutionId}>#001</Text>
-                            <Text style={style.evolutionName}>Bulbasaur</Text>
-                        </View>
-                    </View>
-                    <Text style={style.textLevel}>(level 16)</Text>
-                    <View>
-                        <View style={style.imgView}>
-                            <Image
-                                style={style.pokemonImg}
+                    return (
+                        <View key={minLevel} style={style.lineSequence}>
+                            <View>
+                                <View style={style.imgView}>
+                                    <Image
+                                        style={style.pokemonImg}
 
-                                source={{
-                                    uri: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png',
-                                }}
-                            />
-                        </View>
-                        <View style={style.dataContent}>
-                            <Text style={style.evolutionId}>#002</Text>
-                            <Text style={style.evolutionName}>Ivysaur</Text>
-                        </View>
-                    </View>
-                </View>
-                <View style={style.lineSequence}>
-                    <View>
-                        <View style={style.imgView}>
-                            <Image
-                                style={style.pokemonImg}
+                                        source={{
+                                            uri: evolvesFrom.image_url,
+                                        }}
+                                    />
+                                </View>
+                                <View style={style.dataContent}>
+                                    <Text style={style.evolutionId}>{idToIDString(evolvesFrom.id)}</Text>
+                                    <Text style={style.evolutionName}>{capitalize(evolvesFrom.name)}</Text>
+                                </View>
+                            </View>
+                            <Text style={style.textLevel}>{`(level ${minLevel})`}</Text>
+                            <View>
+                                <View style={style.imgView}>
+                                    <Image
+                                        style={style.pokemonImg}
 
-                                source={{
-                                    uri: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png',
-                                }}
-                            />
+                                        source={{
+                                            uri: evolvesTo.image_url,
+                                        }}
+                                    />
+                                </View>
+                                <View style={style.dataContent}>
+                                    <Text style={style.evolutionId}>{idToIDString(evolvesTo.id)}</Text>
+                                    <Text style={style.evolutionName}>{capitalize(evolvesTo.name)}</Text>
+                                </View>
+                            </View>
                         </View>
-                        <View style={style.dataContent}>
-                            <Text style={style.evolutionId}>#002</Text>
-                            <Text style={style.evolutionName}>Ivysaur</Text>
-                        </View>
-                    </View>
-                    <Text style={style.textLevel}>(level 32)</Text>
-                    <View>
-                        <View style={style.imgView}>
-                            <Image
-                                style={style.pokemonImg}
-
-                                source={{
-                                    uri: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png',
-                                }}
-                            />
-                        </View>
-                        <View style={style.dataContent}>
-                            <Text style={style.evolutionId}>#003</Text>
-                            <Text style={style.evolutionName}>Venusaur</Text>
-                        </View>
-                    </View>
-                </View>
+                    )
+                })}
+                
             </ScrollView>
         </View>);
 }
@@ -97,10 +83,10 @@ const style = StyleSheet.create({
     },
     infoCardTitle: {
         fontSize: 20,
-        marginBottom:30,
+        marginBottom: 30,
         fontFamily: 'sf-pro-display-bold'
     },
-    lineSequence:{
+    lineSequence: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -126,7 +112,7 @@ const style = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 16
     },
-    textLevel:{
+    textLevel: {
         fontWeight: 'bold',
         fontSize: 14
     }

@@ -1,19 +1,15 @@
 import React from "react";
 import { Dimensions, ScrollView, StyleSheet, Text, View } from "react-native";
-import PokeTypes, { findPokeTypeByName } from "../../utils/PokeTypes";
-import { IPokemonData } from "../../utils/Types";
+import { findPokeTypeByName } from "../../utils/PokeTypes";
+import { CardProps } from "../../utils/Types";
 
-interface Props { pokemon: IPokemonData}
-
-const AboutCard = ({pokemon}: Props)=>{
+const AboutCard = ({pokemon,pokemonType}: CardProps)=>{
     const { height,width } = Dimensions.get('window');
-
-    const pokemonType = findPokeTypeByName(pokemon.types[0].type);
 
     return (
     <View style={[style.infoCardContainer,{width}]}>
         <ScrollView style={{ width: '100%',  height: height-380}}>
-            <Text style={style.infoCardTextDescription}>Sdnf jdj nsfjnekfnen jnrj nrkjnf rnjf nrjnf jkrn kjn kjrnkj nrk nrk krn kjnrkjn kjrn kjnrk nkren kjrenk rekj nfkerjnvkjoksdjk kn </Text>
+            <Text style={style.infoCardTextDescription}>{pokemon.description}</Text>
             <Text style={[style.infoCardTitle, { color: pokemonType.color }]}>Pokédex Data</Text>
 
             <View style={style.data}>
@@ -21,7 +17,7 @@ const AboutCard = ({pokemon}: Props)=>{
                     <Text style={style.attributeTitle}>Species</Text>
                 </View>
                 <View style={style.dataContent}>
-                    <Text style={style.attributeInfoText}>Seed Pokémon</Text>
+                    <Text style={style.attributeInfoText}>{pokemon.specieGenera}</Text>
                 </View>
             </View>
             <View style={style.data}>
@@ -29,7 +25,7 @@ const AboutCard = ({pokemon}: Props)=>{
                     <Text style={style.attributeTitle}>Height</Text>
                 </View>
                 <View style={style.dataContent}>
-                    <Text style={style.attributeInfoText}>0,7m</Text>
+                    <Text style={style.attributeInfoText}>{`${pokemon.height}m`}</Text>
                 </View>
             </View>
             <View style={style.data}>
@@ -37,7 +33,7 @@ const AboutCard = ({pokemon}: Props)=>{
                     <Text style={style.attributeTitle}>Weight</Text>
                 </View>
                 <View style={style.dataContent}>
-                    <Text style={style.attributeInfoText}>6,9kg</Text>
+                    <Text style={style.attributeInfoText}>{`${pokemon.weight}kg`}</Text>
                 </View>
             </View>
             <View style={style.data}>
@@ -45,8 +41,12 @@ const AboutCard = ({pokemon}: Props)=>{
                     <Text style={style.attributeTitle}>Abilities</Text>
                 </View>
                 <View style={style.dataContent}>
-                    <Text style={style.attributeInfoText}>1. Overgrow</Text>
-                    <Text style={style.attributeExtraText}>Chlorophill (hidden ability)</Text>
+                    {pokemon.abilities.filter((value)=>(!value.isHidden)).map((value,index)=>{
+                        return <Text key={value.name} style={style.attributeInfoText}>{`${index+1}. ${value.name}`}</Text>
+                    })}
+                    {pokemon.abilities.filter((value)=>value.isHidden).map((value)=>{
+                        return <Text key={value.name} style={style.attributeExtraText}>{`${value.name} (hidden ability)`}</Text>
+                    })}
                 </View>
             </View>
             <View style={style.data}>
@@ -54,30 +54,22 @@ const AboutCard = ({pokemon}: Props)=>{
                     <Text style={style.attributeTitle}>Weakness</Text>
                 </View>
                 <View style={[style.dataContent,{ flexDirection: 'row' }]}>
-                    <View 
-                        style={{ 
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            backgroundColor: PokeTypes[8].color,
-                            padding: 4,
-                            marginRight:8,
-                            width: 32,
-                            height: 32,
-                            borderRadius:4
-                         }}
-                        >{PokeTypes[8].icon(20,20)}</View>
+                    {pokemon.typesWeakness.map((value)=>{
+                        const type = findPokeTypeByName(value.type)
+                        return (
                         <View 
-                        style={{ 
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            backgroundColor: PokeTypes[9].color,
-                            padding: 4,
-                            marginRight:8,
-                            width: 32,
-                            height: 32,
-                            borderRadius:4
-                         }}
-                        >{PokeTypes[9].icon(20,20)}</View>
+                            key={type.name}
+                            style={[style.typeIcon,{backgroundColor: type.color}]}
+                        >{type.icon(20,20)}</View>)
+                    })}
+                </View>
+            </View>
+            <View style={style.data}>
+                <View style={style.dataTitle}>
+                    <Text style={style.attributeTitle}>Habitat</Text>
+                </View>
+                <View style={style.dataContent}>
+                    <Text style={style.attributeInfoText}>{pokemon.habitat}</Text>
                 </View>
             </View>
             <Text style={[style.infoCardTitle, { color: pokemonType.color }]}>Training data</Text>
@@ -103,7 +95,7 @@ const AboutCard = ({pokemon}: Props)=>{
                     <Text style={style.attributeTitle}>Base Friendship</Text>
                 </View>
                 <View style={style.dataContent}>
-                    <Text style={style.attributeInfoText}>70</Text>
+                    <Text style={style.attributeInfoText}>{pokemon.baseFriendship}</Text>
                 </View>
             </View>
             <View style={style.data}>
@@ -111,7 +103,7 @@ const AboutCard = ({pokemon}: Props)=>{
                     <Text style={style.attributeTitle}>Base Exp</Text>
                 </View>
                 <View style={style.dataContent}>
-                    <Text style={style.attributeInfoText}>64</Text>
+                    <Text style={style.attributeInfoText}>{pokemon.baseExperience}</Text>
                 </View>
             </View>
             <View style={style.data}>
@@ -119,7 +111,7 @@ const AboutCard = ({pokemon}: Props)=>{
                     <Text style={style.attributeTitle}>Growth Rate</Text>
                 </View>
                 <View style={style.dataContent}>
-                    <Text style={style.attributeInfoText}>Medium Slow</Text>
+                    <Text style={style.attributeInfoText}>{pokemon.growRate}</Text>
                 </View>
             </View>
             <View style={{height:20}} />
@@ -170,7 +162,17 @@ const style = StyleSheet.create({
     },
     dataContent:{
         flex: 0.65,
-    }
+    },
+    typeIcon:{ 
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#000',
+        padding: 4,
+        marginRight:8,
+        width: 32,
+        height: 32,
+        borderRadius:4
+     }
 });
 
 export default AboutCard;

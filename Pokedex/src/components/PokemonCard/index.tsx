@@ -1,15 +1,15 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, Button, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 
 import Pokeball from '../../../assets/patterns/pokeball-white.svg';
 import GridPattern from '../../../assets/patterns/6x3-white.svg';
 import TypeCard from "../TypeCard";
-import { IPokemonData } from "../../utils/Types";
-import PokeTypes from "../../utils/PokeTypes";
+import { IPokemonBasicData } from "../../utils/Types";
+import PokeTypes, { findPokeTypeByName } from "../../utils/PokeTypes";
 import { SharedElement } from "react-navigation-shared-element";
 
 interface Props {
-    pokemon: IPokemonData,
+    pokemon: IPokemonBasicData,
     navigation: any
 }
 
@@ -30,7 +30,7 @@ const PokemonCard = ({ pokemon, navigation }: Props) => {
         return text
     }
 
-    const pokemonType = PokeTypes.find(element => element.name.toLowerCase() === pokemon.types[0].type.toLowerCase()) || PokeTypes[0]
+    const pokemonType = findPokeTypeByName(pokemon.types[0].type);
 
     function capitalize(s: string) {
         return s[0].toUpperCase() + s.slice(1);
