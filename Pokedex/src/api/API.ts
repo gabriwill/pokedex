@@ -1,12 +1,23 @@
 import axios from "axios";
 import { convertNumberToFrac } from "../utils/convertNumberToFrac";
-import { IEvolutionChain, IPokemonBasicData, IPokemonData, ITypeStatMultiple } from "../utils/Types";
 import '../@types/string.extensions';
 
 const baseURL = "https://pokeapi.co/api/v2/";
 
 
 export class API {
+    async getPokemonListByName(search: string, unit: number, page: number): Promise<IPokemonBasicData[]> {
+        const offset = page * unit;
+        const response = await axios.get<IPokemonListReponse>(baseURL + `pokemon?limit=${unit}&offset=${offset}`).then(res => res.data);
+        const idList = response.results.filter(({ name }) => (name.match(search))).map(({ url }) => Number(url.replace(/\/$/, '').match(/\d+$/)));
+        const data = await Promise.all(idList.map(id => this.getPokemonBasicDataById(id)))
+        return data
+    }
+    async getPokemonIdList(unit: number, page: number): Promise<number[]> {
+        const offset = page * unit;
+        const response = await axios.get<IPokemonListReponse>(baseURL + `pokemon?limit=${unit}&offset=${offset}`).then(res => res.data);
+        return response.results.map(({ url }) => Number(url.replace(/\/$/, '').match(/\d+$/)))
+    }
     async getPokemonBasicDataById(id: number): Promise<IPokemonBasicData> {
         const response = await axios.get<IPokemonResponse>(baseURL + `pokemon/${id}`).then(res => res.data);
 

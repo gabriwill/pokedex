@@ -117,3 +117,10 @@ interface IPokemonEvolutionChainResponse {
     chain: EvolvesTo;
     id: number;
 }
+
+interface IPokemonListReponse {
+    count: number;
+    next: string;
+    prev: string;
+    results: INameAndUrlObject[];
+}

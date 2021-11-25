@@ -58,5 +58,160 @@ export const MockData = {
                 }
             }
         ]
-    }
+    },
+    searchEmptyStringResult: [
+        {
+            id: 1,
+            name: "bulbasaur",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+            types: [
+                {
+                    type: "grass"
+                },
+                {
+                    type: "poison"
+                }
+            ]
+        },
+        {
+            id: 2,
+            name: "ivysaur",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png",
+            types: [
+                {
+                    type: "grass"
+                },
+                {
+                    type: "poison"
+                }
+            ]
+        },
+        {
+            id: 3,
+            name: "venusaur",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png",
+            types: [
+                {
+                    type: "grass"
+                },
+                {
+                    type: "poison"
+                }
+            ]
+        },
+        {
+            id: 4,
+            name: "charmander",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
+            types: [
+                {
+                    type: "fire"
+                }
+            ]
+        },
+        {
+            id: 5,
+            name: "charmeleon",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/5.png",
+            types: [
+                {
+                    type: "fire"
+                }
+            ]
+        },
+        {
+            id: 6,
+            name: "charizard",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png",
+            types: [
+                {
+                    type: "fire"
+                },
+                {
+                    type: "flying"
+                }
+            ]
+        },
+        {
+            id: 7,
+            name: "squirtle",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png",
+            types: [
+                {
+                    type: "water"
+                }
+            ]
+        },
+        {
+            id: 8,
+            name: "wartortle",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/8.png",
+            types: [
+                {
+                    type: "water"
+                }
+            ]
+        },
+        {
+            id: 9,
+            name: "blastoise",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/9.png",
+            types: [
+                {
+                    type: "water"
+                }
+            ]
+        },
+        {
+            id: 10,
+            name: "caterpie",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10.png",
+            types: [
+                {
+                    type: "bug"
+                }
+            ]
+        }
+    ],
+    threeSaursResult: [
+        {
+            id: 1,
+            name: "bulbasaur",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+            types: [
+                {
+                    type: "grass"
+                },
+                {
+                    type: "poison"
+                }
+            ]
+        },
+        {
+            id: 2,
+            name: "ivysaur",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png",
+            types: [
+                {
+                    type: "grass"
+                },
+                {
+                    type: "poison"
+                }
+            ]
+        },
+        {
+            id: 3,
+            name: "venusaur",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png",
+            types: [
+                {
+                    type: "grass"
+                },
+                {
+                    type: "poison"
+                }
+            ]
+        }
+    ],
 }

@@ -1,5 +1,4 @@
 import { API } from "../../src/api/API";
-import { IPokemonBasicData } from "../../src/utils/Types";
 import { MockAPIResponses } from "../testUtils/mockAPIResponse";
 import { MockData } from "../testUtils/MockData";
 
