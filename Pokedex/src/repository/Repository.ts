@@ -17,8 +17,8 @@ export class Repository {
     }
 
     static getPokemonData(id: number): IPokemonData{
-        const typesDefMutiple = PokeTypes.map((value)=>({type:value.name,mutiple:'2'}));
-        const typesAtkMutiple = PokeTypes.map((value)=>({type:value.name,mutiple:'2'}));
+        const typesDefMultiple = PokeTypes.map((value)=>({type:value.name,multiple:'2'}));
+        const typesAtkMultiple = PokeTypes.map((value)=>({type:value.name,multiple:'2'}));
         return {
             id: 1,
             name: 'bulbasaur',
@@ -33,8 +33,8 @@ export class Repository {
             habitat: 'florest',
             growRate: 'Medium Slow',
             typesWeakness:[{type: 'fire'},{type: 'flying'}],
-            typesDefMutiple,
-            typesAtkMutiple,
+            typesDefMultiple,
+            typesAtkMultiple,
             stats:[
                 {stat:'hp',base_stat:45},
                 {stat:'Attack',base_stat:49},

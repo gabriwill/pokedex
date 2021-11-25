@@ -55,7 +55,7 @@ const StatsCard = ({ pokemon, pokemonType }: CardProps) => {
                 <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
                     {PokeTypes.map((type) => {
                         const icon = type.icon(18, 18)
-                        const mutiple = pokemon.typesDefMutiple.find((value)=>type.name==value.type)?.mutiple
+                        const mutiple = pokemon.typesDefMultiple.find((value)=>type.name==value.type)?.multiple
                         return (
                             <View key={type.name} style={style.typeAttributes}>
                                 <View
@@ -80,7 +80,7 @@ const StatsCard = ({ pokemon, pokemonType }: CardProps) => {
                 <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
                     {PokeTypes.map((type) => {
                         const icon = type.icon(18, 18)
-                        const mutiple = pokemon.typesDefMutiple.find((value)=>type.name==value.type)?.mutiple
+                        const mutiple = pokemon.typesDefMultiple.find((value)=>type.name==value.type)?.multiple
                         return (
                             <View key={type.name} style={style.typeAttributes}>
                                 <View

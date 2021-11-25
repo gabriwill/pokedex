@@ -65,6 +65,15 @@ export interface IPokemonApiResponse {
     weight: number
 }
 
+export interface ITypeStatMultiple {
+    type:string,
+    multiple:string
+}
+
+export interface IEvolutionChain {
+    evolvesTo: IPokemonBasicData,
+    minLevel: number
+}
 export interface IPokemonBasicData {
     id: number,
     name: string,
@@ -91,14 +100,8 @@ export interface IPokemonData {
     typesWeakness:{  
         type: string 
     }[],
-    typesDefMutiple:{  
-        type: string,
-        mutiple: string 
-    }[],
-    typesAtkMutiple:{  
-        type: string,
-        mutiple: string 
-    }[],
+    typesDefMultiple:ITypeStatMultiple[],
+    typesAtkMultiple:ITypeStatMultiple[],
     stats:{ 
         stat: string,
         base_stat: number,  
@@ -107,10 +110,7 @@ export interface IPokemonData {
         name: string,
         isHidden: boolean
     }[],
-    evolutionChain:{
-        evolvesTo: IPokemonBasicData,
-        minLevel: number
-    }[]
+    evolutionChain:IEvolutionChain[]
 }
 
 export const pokemonDataToPokemonBasicData = ({ id, name, image_url, types } : IPokemonData):IPokemonBasicData=>{
