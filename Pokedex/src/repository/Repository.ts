@@ -6,6 +6,7 @@ export class Repository {
     private api: API;
     private pokemonList: IPokemonBasicData[] = [];
     private searchString: string = '';
+    private searchIdCode: string = '';
 
     constructor() {
         this.api = new API();
@@ -18,16 +19,20 @@ export class Repository {
     setSearchString(newString?: string) {
         if (!newString) this.searchString = '';
         else this.searchString = newString;
+        this.searchIdCode = '';
         this.pokemonList = [];
         this.page = 0;
     }
 
     async addNewPokemonsToList(): Promise<IPokemonBasicData[]> {
         if (!this.api) return [];
+        const idCode = String(Math.random());
+        this.searchIdCode = idCode;
         const newEntries: IPokemonBasicData[] = []
         while (this.page < 150) {
             const newItems = await this.api.getPokemonListByName(this.searchString, this.unit, this.page);
             newEntries.push(...newItems)
+            if (this.searchIdCode != idCode) return [];
             if (newEntries.length >= this.unit) break;
             this.page++;
         }

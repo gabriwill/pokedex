@@ -17,6 +17,14 @@ describe('Tests the repository layer of application', () => {
 
         expect(repository.getPokemonList()).toEqual(MockData.tenPokemonWithar)
     });
+    jest.setTimeout(10000)
+    it('Should obtain a list of ten first pokemon\'s basic data whose name contains the character z from API when the search string is \'z\'', async () => {
+        const repository = new Repository();
+        repository.setSearchString('z');
+        await repository.addNewPokemonsToList();
+
+        expect(repository.getPokemonList()).toEqual(MockData.tenPokemonWithz)
+    });
 
     it('Should change a list of ten first pokemon\'s basic data to a list of ten first pokemon\'s basic data whose name contains the pattern ar from API when the search string is \'ar\'', async () => {
         const repository = new Repository();
@@ -26,6 +34,18 @@ describe('Tests the repository layer of application', () => {
 
         repository.setSearchString('ar');
         await repository.addNewPokemonsToList();
+        expect(repository.getPokemonList()).toEqual(MockData.tenPokemonWithar)
+    });
+
+    it('Should begin a search for ten first pokemon\'s, but interrupt it when search string is changed to \'ar\', then search a list of ten first pokemon\'s basic data whose name contains the pattern ar from API', async () => {
+        const repository = new Repository();
+        repository.setSearchString('');
+        repository.addNewPokemonsToList();
+        await new Promise(r => setInterval(r, 500))
+
+        repository.setSearchString('ar');
+        await repository.addNewPokemonsToList();
+
         expect(repository.getPokemonList()).toEqual(MockData.tenPokemonWithar)
     });
 
