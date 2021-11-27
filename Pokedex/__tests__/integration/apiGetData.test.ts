@@ -65,6 +65,14 @@ describe('Obtain data from API', () => {
         const pokemonList = await api.getPokemonListByName('saur', unit, page);
         expect(pokemonList).toEqual(MockData.threeSaursResult);
     });
+
+    it('Should obtain an empty array when search pokemon with \'123x4\' string', async () => {
+        const api = new API();
+        const page = 0;
+        const unit = 10;
+        const pokemonList = await api.getPokemonListByName('123x4', unit, page);
+        expect(pokemonList).toEqual([]);
+    });
 });
 
 export { }

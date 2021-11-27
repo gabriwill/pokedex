@@ -2,7 +2,7 @@ import { API } from "../../src/api/API";
 import { MockAPIResponses } from "../testUtils/mockAPIResponse";
 import { MockData } from "../testUtils/MockData";
 
-describe('The convert data functions', () => {
+describe('Tests of the convert data functions', () => {
     it('Should convert the response of API endpoint /pokemon/id to a IPokemonBasicData object', () => {
         const pokemonAPIData = JSON.parse(MockAPIResponses.pokemonIdEndpointResponse);
         const api = new API();

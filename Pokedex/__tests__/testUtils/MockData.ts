@@ -214,4 +214,121 @@ export const MockData = {
             ]
         }
     ],
+    tenPokemonWithar: [
+        {
+            id: 4,
+            name: "charmander",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
+            types: [
+                {
+                    type: "fire"
+                }
+            ]
+        },
+        {
+            id: 5,
+            name: "charmeleon",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/5.png",
+            types: [
+                {
+                    type: "fire"
+                }
+            ]
+        },
+        {
+            id: 6,
+            name: "charizard",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png",
+            types: [
+                {
+                    type: "fire"
+                },
+                {
+                    type: "flying"
+                }
+            ]
+        },
+        {
+            id: 8,
+            name: "wartortle",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/8.png",
+            types: [
+                {
+                    type: "water"
+                }
+            ]
+        },
+        {
+            id: 21,
+            name: "spearow",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/21.png",
+            types: [
+                {
+                    type: "normal"
+                },
+                {
+                    type: "flying"
+                }
+            ]
+        },
+        {
+            id: 22,
+            name: "fearow",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/22.png",
+            types: [
+                {
+                    type: "normal"
+                },
+                {
+                    type: "flying"
+                }
+            ]
+        },
+        {
+            id: 24,
+            name: "arbok",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/24.png",
+            types: [
+                {
+                    type: "poison"
+                }
+            ]
+        },
+        {
+            id: 46,
+            name: "paras",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/46.png",
+            types: [
+                {
+                    type: "bug"
+                },
+                {
+                    type: "grass"
+                }
+            ]
+        },
+        {
+            id: 47,
+            name: "parasect",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/47.png",
+            types: [
+                {
+                    type: "bug"
+                },
+                {
+                    type: "grass"
+                }
+            ]
+        },
+        {
+            id: 59,
+            name: "arcanine",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/59.png",
+            types: [
+                {
+                    type: "fire"
+                }
+            ]
+        }
+    ],
 }
