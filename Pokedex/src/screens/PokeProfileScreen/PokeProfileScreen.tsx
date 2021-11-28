@@ -89,7 +89,7 @@ const PokeProfileScreen = ({ navigation, route }: Props) => {
                 </View>
                 <View style={style.dataContainer}>
                     <Text style={[style.pokemonId, { color: pokemonType.fontColor }]}>{idToIDString(pokemon.id)}</Text>
-                    <Text ellipsizeMode="clip" style={style.pokemonName}>{pokemon.name.capitalize()}</Text>
+                    <Text ellipsizeMode="clip" numberOfLines={1} style={style.pokemonName}>{pokemon.name}</Text>
                     <View style={style.typesRow}>
                         {pokemon.types.map(({ type }) => <TypeCard key={type} type={type} />)}
                     </View>
@@ -172,7 +172,8 @@ const style = StyleSheet.create({
         color: '#fff',
         fontSize: 36,
         fontFamily: 'sf-pro-display-bold',
-        lineHeight: 40
+        lineHeight: 40,
+        textTransform: 'capitalize'
     },
     typesRow: {
         flexDirection: 'row'

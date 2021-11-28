@@ -4,12 +4,11 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import Pokeball from '../../../assets/patterns/pokeball-white.svg';
 import GridPattern from '../../../assets/patterns/6x3-white.svg';
 import TypeCard from "../TypeCard";
-import { IPokemonBasicData } from "../../utils/Types";
-import PokeTypes, { findPokeTypeByName } from "../../utils/PokeTypes";
+import { findPokeTypeByName } from "../../utils/PokeTypes";
 import { SharedElement } from "react-navigation-shared-element";
 
 interface Props {
-    pokemon: IPokemonBasicData,
+    pokemon: IPokemonCardData,
     navigation: any
 }
 
@@ -32,10 +31,6 @@ const PokemonCard = ({ pokemon, navigation }: Props) => {
 
     const pokemonType = findPokeTypeByName(pokemon.types[0].type);
 
-    function capitalize(s: string) {
-        return s[0].toUpperCase() + s.slice(1);
-    }
-
     return (
         <TouchableOpacity
             style={[style.container, { backgroundColor: pokemonType.backgroundColor }]}
@@ -50,9 +45,9 @@ const PokemonCard = ({ pokemon, navigation }: Props) => {
 
             <View style={style.dataContainer}>
                 <Text style={[style.pokemonId, { color: pokemonType.fontColor }]}>{idToIDString(pokemon.id)}</Text>
-                <Text style={style.pokemonName}>{capitalize(pokemon.name)}</Text>
+                <Text numberOfLines={1} ellipsizeMode={'clip'} style={style.pokemonName}>{pokemon.name}</Text>
                 <View style={style.typesRow}>
-                    {pokemon.types.map(e => <TypeCard key={e.type} type={e.type.toLowerCase()} />)}
+                    {pokemon.types.map(({ type }) => <TypeCard key={type} type={type.toLowerCase()} />)}
                 </View>
             </View>
             <View>
@@ -84,7 +79,8 @@ const style = StyleSheet.create({
     },
     dataContainer: {
         justifyContent: 'center',
-        paddingLeft: 8
+        paddingLeft: 8,
+        maxWidth: '50%'
     },
     pokemonId: {
         color: '#000',
@@ -95,7 +91,8 @@ const style = StyleSheet.create({
         color: '#fff',
         fontSize: 32,
         fontFamily: 'sf-pro-display-bold',
-        lineHeight: 40
+        lineHeight: 40,
+        textTransform: 'capitalize',
     },
     typesRow: {
         flexDirection: 'row'

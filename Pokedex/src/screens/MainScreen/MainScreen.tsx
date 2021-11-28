@@ -9,26 +9,31 @@ import Sort from '../../../assets/icons/sort.svg';
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../RootStackParamsList";
 import { Repository } from "../../repository/Repository";
+import LoadingIndicator from "../../components/LoadingIndicator";
 
 export type HomeScreenProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
 const MainScreen = ({ navigation }: HomeScreenProps) => {
     const repository = useMemo(() => new Repository(), []);
     const { height, width } = Dimensions.get('window');
-    const [update, updateList] = useState(false)
+    const [update, setUpdate] = useState(false)
+    const [loading, setLoading] = useState(false)
     const [pokemonList, setPokemonList] = useState<IPokemonCardData[]>([]);
 
+    async function fetchPokemonList() {
+        setLoading(true)
+        await repository.initializer()
+        await repository.addNewPokemonsToList();
+        setPokemonList(repository.getPokemonList())
+        setLoading(false)
+    }
+
     useEffect(() => {
-        async function fetchPokemonList() {
-            await repository.initializer()
-            await repository.addNewPokemonsToList();
-            setPokemonList(repository.getPokemonList())
-        }
         fetchPokemonList()
     }, [update]);
     const onChangeTextHandler = (searchName: string) => {
-        repository.setSearchString(searchName);
-        updateList(!update);
+        repository.setSearchString(searchName.trim());
+        setUpdate(!update);
     }
 
     return (
@@ -63,6 +68,12 @@ const MainScreen = ({ navigation }: HomeScreenProps) => {
                     data={pokemonList}
                     renderItem={({ item }) => {
                         return (<PokemonCard pokemon={item} navigation={navigation} />)
+                    }}
+                    keyExtractor={(item, index) => String(item.id)}
+                    onEndReached={() => fetchPokemonList()}
+                    onEndReachedThreshold={0.1}
+                    ListFooterComponent={() => {
+                        return loading ? <LoadingIndicator /> : null
                     }}
                 />
             </View>

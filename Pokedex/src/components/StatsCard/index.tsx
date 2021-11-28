@@ -1,6 +1,7 @@
 import React from "react";
 import { Dimensions, ScrollView, StyleSheet, Text, View } from "react-native";
 import PokeTypes from "../../utils/PokeTypes";
+import LoadingIndicator from "../LoadingIndicator";
 
 const StatsCard = ({ pokemon, pokemonType }: CardProps) => {
     const { height, width } = Dimensions.get('window');
@@ -8,7 +9,7 @@ const StatsCard = ({ pokemon, pokemonType }: CardProps) => {
 
     return (
         <View style={[style.infoCardContainer, { width }]}>
-            {pokemon && <ScrollView style={{ width: '100%', height: height - 380 }}>
+            {pokemon ? <ScrollView style={{ width: '100%', height: height - 380 }}>
                 <Text style={[style.infoCardTitle, { color: pokemonType.color }]}>Base Stats</Text>
                 {pokemon.stats.map((value) => {
                     total += value.base_stat;
@@ -99,7 +100,9 @@ const StatsCard = ({ pokemon, pokemonType }: CardProps) => {
                         )
                     })}
                 </View>
-            </ScrollView>}
+            </ScrollView> :
+                <LoadingIndicator />
+            }
         </View>);
 }
 

@@ -1,13 +1,14 @@
 import React from "react";
 import { Dimensions, ScrollView, StyleSheet, Text, View } from "react-native";
 import { findPokeTypeByName } from "../../utils/PokeTypes";
+import LoadingIndicator from "../LoadingIndicator";
 
 const AboutCard = ({ pokemon, pokemonType }: CardProps) => {
     const { height, width } = Dimensions.get('window');
 
     return (
         <View style={[style.infoCardContainer, { width }]}>
-            {pokemon && <ScrollView style={{ width: '100%', height: height - 380 }}>
+            {pokemon ? <ScrollView style={{ width: '100%', height: height - 380 }}>
                 <Text style={style.infoCardTextDescription}>{pokemon.description}</Text>
                 <Text style={[style.infoCardTitle, { color: pokemonType.color }]}>Pokédex Data</Text>
 
@@ -114,7 +115,9 @@ const AboutCard = ({ pokemon, pokemonType }: CardProps) => {
                     </View>
                 </View>
                 <View style={{ height: 20 }} />
-            </ScrollView>}
+            </ScrollView> :
+                <LoadingIndicator height={500} />
+            }
         </View>);
 }
 

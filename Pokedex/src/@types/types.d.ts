@@ -26,8 +26,9 @@ interface ITypeStatMultiple {
 }
 
 interface IEvolutionChain {
-    evolvesTo: IPokemonCardData,
-    minLevel: number
+    origin: IPokemonCardData;
+    evolvesTo: IPokemonCardData;
+    minLevel?: number;
 }
 
 interface IPokemonData {

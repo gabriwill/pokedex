@@ -48,9 +48,9 @@ export class Repository {
         );
         newEntries.sort((a, b) => a.id - b.id)
         if (this.searchIdCode != idCode) return [];
-        if (this.page > 0) this.page++;
+        this.page++;
         this.pokemonList.push(...newEntries)
-        return this.pokemonList
+        return newEntries
     }
 
     static async getPokemonData(id: number): Promise<IPokemonData> {

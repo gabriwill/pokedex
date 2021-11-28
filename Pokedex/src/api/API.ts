@@ -76,14 +76,18 @@ export class API {
     async getPokemonEvolutionChain(data: IPokemonEvolutionChainResponse): Promise<IEvolutionChain[]> {
         const evolutionChain: IEvolutionChain[] = []
         let hasOtherEvolution = data.chain.evolves_to.length == 0 ? false : true
+        let origin = await this.getPokemonCardDataById((await axios.get<IPokemonEvolutionChainResponse>(data.chain.species.url).then(res => res.data)).id)
         let evolution = data.chain.evolves_to[0]
         while (hasOtherEvolution) {
             const minLevel = evolution.evolution_details[0].min_level
             const specie = await axios.get<IPokemonEvolutionChainResponse>(evolution.species.url).then(res => res.data);
             const evolvesTo = await this.getPokemonCardDataById(specie.id);
-            evolutionChain.push({ minLevel, evolvesTo });
+            evolutionChain.push({ origin, minLevel, evolvesTo });
             hasOtherEvolution = evolution.evolves_to.length == 0 ? false : true
-            evolution = evolution.evolves_to[0]
+            if (hasOtherEvolution) {
+                evolution = evolution.evolves_to[0]
+                origin = await this.getPokemonCardDataById((await axios.get<IPokemonEvolutionChainResponse>(evolution.species.url).then(res => res.data)).id);
+            }
         }
 
         return evolutionChain
@@ -150,7 +154,7 @@ export class API {
             baseFriendship,
             description,
             growRate,
-            habitat,
+            habitat: habitat || '',
             baseExperience,
             typesWeakness,
             specieGenera,

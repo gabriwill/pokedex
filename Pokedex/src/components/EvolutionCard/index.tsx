@@ -1,6 +1,7 @@
 import React from "react";
 import { Dimensions, Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import { pokemonDataToPokemonBasicData } from "../../utils/Types";
+import LoadingIndicator from "../LoadingIndicator";
 
 const EvolutionCard = ({ pokemon, pokemonType }: CardProps) => {
     const { height, width } = Dimensions.get('window');
@@ -17,10 +18,10 @@ const EvolutionCard = ({ pokemon, pokemonType }: CardProps) => {
 
     return (
         <View style={[style.infoCardContainer, { width }]}>
-            {pokemon && <ScrollView style={{ width: '100%', height: height - 380 }}>
+            {pokemon ? <ScrollView style={{ width: '100%', height: height - 380 }}>
                 <Text style={[style.infoCardTitle, { color: pokemonType.color }]}>Evolution Chart</Text>
                 {pokemon.evolutionChain.map((value, index, arr) => {
-                    let evolvesFrom = pokemonDataToPokemonBasicData(pokemon);
+                    let evolvesFrom = value.origin;
                     if (index != 0) {
                         evolvesFrom = arr[index - 1].evolvesTo;
                     }
@@ -64,7 +65,9 @@ const EvolutionCard = ({ pokemon, pokemonType }: CardProps) => {
                     )
                 })}
 
-            </ScrollView>}
+            </ScrollView> :
+                <LoadingIndicator />
+            }
         </View>);
 }
 
