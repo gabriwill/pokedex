@@ -63,6 +63,16 @@ describe('Tests the repository layer of application', () => {
 
         expect(pokemonData).toEqual(mockData);
     });
+
+    it('Should obtain a list of twenty first pokemon\'s basic data from API whenthe search string is empty', async () => {
+        const repository = new Repository();
+        await repository.initializer();
+        repository.setSearchString('');
+        await repository.addNewPokemonsToList();
+        await repository.addNewPokemonsToList();
+
+        expect(repository.getPokemonList()).toEqual(MockData.firstTwentyPokemons)
+    });
 });
 
 export { }
