@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { Animated, Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 
 import Pokeball from '../../../assets/patterns/pokeball-grad.svg';
@@ -19,22 +19,29 @@ import { Repository } from "../../repository/Repository";
 type Props = NativeStackScreenProps<RootStackParamList, 'PokeProfile'>;
 
 const PokeProfileScreen = ({ navigation, route }: Props) => {
-    const pokemon = route.params.pokemon
+    const [update, setUpdate] = useState(false)
+    const pokemon: IPokemonCardData = route.params.pokemon
     const { height, width } = Dimensions.get('window');
     let menuList: any;
-    const pokemonData = Repository.getPokemonData(pokemon.id);
-
+    const [pokemonData, setPokemonData] = useState<IPokemonData | undefined>();
+    useEffect(() => {
+        async function fetchData() {
+            const data = await Repository.getPokemonData(pokemon.id);
+            setPokemonData(data);
+        }
+        fetchData();
+    }, [update]);
     const scrollX = useRef(new Animated.Value(0)).current;
     const translateX = scrollX.interpolate({
-        inputRange: [0, width, width*2],
-        outputRange: [0,120,260]
+        inputRange: [0, width, width * 2],
+        outputRange: [0, 120, 260]
     });
-    const opacity = (i:number)=> scrollX.interpolate({
-        inputRange: [0, width, width*2],
-        outputRange: [i==0 ? 1:0.5, i==1? 1:0.5, i==2? 1:0.5]
+    const opacity = (i: number) => scrollX.interpolate({
+        inputRange: [0, width, width * 2],
+        outputRange: [i == 0 ? 1 : 0.5, i == 1 ? 1 : 0.5, i == 2 ? 1 : 0.5]
     });
 
-    const idToIDString= (id: number)=>{
+    const idToIDString = (id: number) => {
         let text = `#${id}`
         if (id < 10) {
             text = `#00${id}`
@@ -43,23 +50,22 @@ const PokeProfileScreen = ({ navigation, route }: Props) => {
         }
         return text
     }
-    
+
     const pokemonType = findPokeTypeByName(pokemon.types[0].type);
 
-    const capitalize=(s: string)=> s[0].toUpperCase() + s.slice(1);
-
-    const scrollListToIndex = (index: number) => {menuList?.scrollToIndex({index}) }
+    const scrollListToIndex = (index: number) => { menuList?.scrollToIndex({ index }) }
 
     return (
         <View style={{ backgroundColor: '#fff', height }}>
-            <View style={[style.cardContainer, { backgroundColor: pokemonType.backgroundColor }]}>
+            <View style={[style.cardContainer, { backgroundColor: pokemonType.backgroundColor, width }]}>
                 <View style={style.gridPattern}>
                     <GridPattern height={(161 / 75) * 200} width={200} fillOpacity={0.2} />
                 </View>
-                <Animated.View 
+                <Animated.View
                     style={[
-                        style.pokeball,{
-                        transform:[{translateX}]}
+                        style.pokeball, {
+                            transform: [{ translateX }]
+                        }
                     ]}>
                     <Pokeball height={120} width={120} />
                 </Animated.View>
@@ -83,9 +89,9 @@ const PokeProfileScreen = ({ navigation, route }: Props) => {
                 </View>
                 <View style={style.dataContainer}>
                     <Text style={[style.pokemonId, { color: pokemonType.fontColor }]}>{idToIDString(pokemon.id)}</Text>
-                    <Text style={style.pokemonName}>{capitalize(pokemon.name)}</Text>
+                    <Text ellipsizeMode="clip" style={style.pokemonName}>{pokemon.name.capitalize()}</Text>
                     <View style={style.typesRow}>
-                        {pokemon.types.map(e => <TypeCard key={e.type} type={e.type} />)}
+                        {pokemon.types.map(({ type }) => <TypeCard key={type} type={type} />)}
                     </View>
                 </View>
 
@@ -93,18 +99,18 @@ const PokeProfileScreen = ({ navigation, route }: Props) => {
             <View style={style.infoContainer}>
                 <View style={style.infoMenuContainer}>
                     <TouchableOpacity onPress={() => scrollListToIndex(0)}>
-                        <Animated.Text style={[style.infoMenuText,{opacity:opacity(0)}]}>About</Animated.Text>
+                        <Animated.Text style={[style.infoMenuText, { opacity: opacity(0) }]}>About</Animated.Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => scrollListToIndex(1)}>
-                        <Animated.Text style={[style.infoMenuText,{opacity:opacity(1)}]}>Stats</Animated.Text>
+                        <Animated.Text style={[style.infoMenuText, { opacity: opacity(1) }]}>Stats</Animated.Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => scrollListToIndex(2)}>
-                        <Animated.Text style={[style.infoMenuText,{opacity:opacity(2)}]}>Evolutions</Animated.Text>
+                        <Animated.Text style={[style.infoMenuText, { opacity: opacity(2) }]}>Evolutions</Animated.Text>
                     </TouchableOpacity>
                 </View>
                 <Animated.FlatList
-                    data={[<AboutCard pokemon={pokemonData} pokemonType={pokemonType}  />,
-                    <StatsCard pokemon={pokemonData} pokemonType={pokemonType}  />,
+                    data={[<AboutCard pokemon={pokemonData} pokemonType={pokemonType} />,
+                    <StatsCard pokemon={pokemonData} pokemonType={pokemonType} />,
                     <EvolutionCard pokemon={pokemonData} pokemonType={pokemonType} />]}
                     renderItem={({ item }) => item}
                     horizontal
@@ -114,8 +120,8 @@ const PokeProfileScreen = ({ navigation, route }: Props) => {
                     ref={list => { menuList = list }}
                     scrollEventThrottle={1}
                     onScroll={Animated.event(
-                        [{nativeEvent: {contentOffset:{x:scrollX}}}],
-                        {useNativeDriver: true}
+                        [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+                        { useNativeDriver: true }
                     )}
                 />
 
@@ -146,13 +152,15 @@ const style = StyleSheet.create({
         height: 350,
         flexDirection: 'row',
         justifyContent: 'space-around',
-        paddingHorizontal: 16
+        paddingHorizontal: 32
     },
     dataContainer: {
+        flex: 1,
         justifyContent: 'center',
         paddingLeft: 8
     },
     imageContainer: {
+        flex: 1,
         justifyContent: 'center',
     },
     pokemonId: {
@@ -186,7 +194,7 @@ const style = StyleSheet.create({
     },
     circleImg: {
         position: 'absolute',
-        right: 0
+        left: 16
     },
     pokemonNameEffectView: {
         position: 'absolute',
@@ -206,7 +214,8 @@ const style = StyleSheet.create({
     },
     backButton: {
         position: 'absolute',
-        top: 20
+        top: 20,
+        left: 20
     }
 })
 

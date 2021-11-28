@@ -6,11 +6,21 @@ const baseURL = "https://pokeapi.co/api/v2/";
 
 
 export class API {
-    async getPokemonListByName(search: string, unit: number, page: number): Promise<IPokemonBasicData[]> {
+    async getAllPokemons(): Promise<IPokemonInfo[]> {
+        const response = await axios.get<IPokemonListReponse>(baseURL + 'pokemon?limit=2000').then(res => res.data);
+        const data = response.results.map(({ name, url }) => {
+            return {
+                id: Number(url.replace(/\/$/, '').match(/\d+$/)),
+                name
+            }
+        });
+        return data
+    }
+    async getPokemonListByName(search: string, unit: number, page: number): Promise<IPokemonCardData[]> {
         const offset = page * unit;
         const response = await axios.get<IPokemonListReponse>(baseURL + `pokemon?limit=${unit}&offset=${offset}`).then(res => res.data);
         const idList = response.results.filter(({ name }) => (name.match(search))).map(({ url }) => Number(url.replace(/\/$/, '').match(/\d+$/)));
-        const data = await Promise.all(idList.map(id => this.getPokemonBasicDataById(id)))
+        const data = await Promise.all(idList.map(id => this.getPokemonCardDataById(id)))
         return data
     }
     async getPokemonIdList(unit: number, page: number): Promise<number[]> {
@@ -18,12 +28,12 @@ export class API {
         const response = await axios.get<IPokemonListReponse>(baseURL + `pokemon?limit=${unit}&offset=${offset}`).then(res => res.data);
         return response.results.map(({ url }) => Number(url.replace(/\/$/, '').match(/\d+$/)))
     }
-    async getPokemonBasicDataById(id: number): Promise<IPokemonBasicData> {
+    async getPokemonCardDataById(id: number): Promise<IPokemonCardData> {
         const response = await axios.get<IPokemonResponse>(baseURL + `pokemon/${id}`).then(res => res.data);
 
         return this.getPokemonBasicDataFromApiIdData(response)
     }
-    getPokemonBasicDataFromApiIdData(apiIdResponse: IPokemonResponse): IPokemonBasicData {
+    getPokemonBasicDataFromApiIdData(apiIdResponse: IPokemonResponse): IPokemonCardData {
         return {
             id: Number(apiIdResponse.id),
             name: apiIdResponse.name,
@@ -70,7 +80,7 @@ export class API {
         while (hasOtherEvolution) {
             const minLevel = evolution.evolution_details[0].min_level
             const specie = await axios.get<IPokemonEvolutionChainResponse>(evolution.species.url).then(res => res.data);
-            const evolvesTo = await this.getPokemonBasicDataById(specie.id);
+            const evolvesTo = await this.getPokemonCardDataById(specie.id);
             evolutionChain.push({ minLevel, evolvesTo });
             hasOtherEvolution = evolution.evolves_to.length == 0 ? false : true
             evolution = evolution.evolves_to[0]
@@ -114,7 +124,7 @@ export class API {
 
         const baseFriendship = specieData.base_happiness;
         const growRate = specieData.growth_rate.name.stringFormat();
-        const habitat = specieData.habitat.name.capitalize();
+        const habitat = specieData.habitat?.name.capitalize();
         const baseExperience = data.base_experience;
 
         const typesWeakness = typesDefMultiple.filter(({ multiple }: ITypeStatMultiple) => (Number(multiple) >= 2)).map(({ type }: ITypeStatMultiple) => ({ type: type.toLowerCase() }));

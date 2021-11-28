@@ -40,7 +40,7 @@ const PokeTypes: Type[] = [
         icon: (height?: number, width?: number) => (<BugIcon height={height || size} width={width || size} color='#fff' />),
         name: 'Bug',
         color: '#8cb230',
-        backgroundColor: '#D7FF7A',
+        backgroundColor: '#badd69',
         fontColor: '#5C693E'
     },
     {
@@ -59,9 +59,9 @@ const PokeTypes: Type[] = [
     },
     {
         icon: (height?: number, width?: number) => (<EletricIcon height={height || size} width={width || size} color='#fff' />),
-        name: 'Eletric',
+        name: 'Electric',
         color: '#eed535',
-        backgroundColor: '#FFEC6E',
+        backgroundColor: '#dac95b',
         fontColor: '#A39958'
     },
     {
@@ -110,7 +110,7 @@ const PokeTypes: Type[] = [
         icon: (height?: number, width?: number) => (<IceIcon height={height || size} width={width || size} color='#fff' />),
         name: 'Ice',
         color: '#61cec0',
-        backgroundColor: '#ADFFF4',
+        backgroundColor: '#96e2d8',
         fontColor: '#698581'
     },
     {

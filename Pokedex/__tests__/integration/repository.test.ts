@@ -4,6 +4,7 @@ import { MockData } from "../testUtils/MockData";
 describe('Tests the repository layer of application', () => {
     it('Should obtain a list of ten first pokemon\'s basic data from API whenthe search string is empty', async () => {
         const repository = new Repository();
+        await repository.initializer();
         repository.setSearchString('');
         await repository.addNewPokemonsToList();
 
@@ -12,6 +13,7 @@ describe('Tests the repository layer of application', () => {
 
     it('Should obtain a list of ten first pokemon\'s basic data whose name contains the pattern ar from API when the search string is \'ar\'', async () => {
         const repository = new Repository();
+        await repository.initializer();
         repository.setSearchString('ar');
         await repository.addNewPokemonsToList();
 
@@ -20,6 +22,7 @@ describe('Tests the repository layer of application', () => {
     jest.setTimeout(10000)
     it('Should obtain a list of ten first pokemon\'s basic data whose name contains the character z from API when the search string is \'z\'', async () => {
         const repository = new Repository();
+        await repository.initializer();
         repository.setSearchString('z');
         await repository.addNewPokemonsToList();
 
@@ -28,6 +31,7 @@ describe('Tests the repository layer of application', () => {
 
     it('Should change a list of ten first pokemon\'s basic data to a list of ten first pokemon\'s basic data whose name contains the pattern ar from API when the search string is \'ar\'', async () => {
         const repository = new Repository();
+        await repository.initializer();
         repository.setSearchString('');
         await repository.addNewPokemonsToList();
         expect(repository.getPokemonList()).toEqual(MockData.searchEmptyStringResult)
@@ -39,6 +43,7 @@ describe('Tests the repository layer of application', () => {
 
     it('Should begin a search for ten first pokemon\'s, but interrupt it when search string is changed to \'ar\', then search a list of ten first pokemon\'s basic data whose name contains the pattern ar from API', async () => {
         const repository = new Repository();
+        await repository.initializer();
         repository.setSearchString('');
         repository.addNewPokemonsToList();
         await new Promise(r => setInterval(r, 500))

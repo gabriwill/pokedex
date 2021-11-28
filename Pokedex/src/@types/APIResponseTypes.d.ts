@@ -25,7 +25,7 @@ interface IPokemonSpeciesResponse {
     }[];
     generation: INameAndUrlObject;
     growth_rate: INameAndUrlObject;
-    habitat: INameAndUrlObject;
+    habitat: INameAndUrlObject | null;
     has_gender_differences: boolean;
     hatch_counter: number;
     id: number;

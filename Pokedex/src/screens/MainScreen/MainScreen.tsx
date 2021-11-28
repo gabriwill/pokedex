@@ -1,28 +1,38 @@
-import React, { useEffect, useState } from "react";
-import { FlatList, StyleSheet, Text, TextInput, View } from 'react-native'
+import React, { useEffect, useMemo, useState } from "react";
+import { Dimensions, FlatList, StyleSheet, Text, TextInput, View } from 'react-native'
 import PokemonCard from "../../components/PokemonCard";
 import Pokeball from '../../../assets/patterns/pokeball-grad.svg';
 import Search from '../../../assets/icons/search.svg';
 import Generations from '../../../assets/icons/generation.svg';
 import Filter from '../../../assets/icons/filter.svg';
 import Sort from '../../../assets/icons/sort.svg';
-import { IPokemonBasicData } from "../../utils/Types";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../RootStackParamsList";
 import { Repository } from "../../repository/Repository";
 
-export type HomeScreenProps = NativeStackScreenProps<RootStackParamList,'Home'>;
+export type HomeScreenProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
-const MainScreen = ({navigation}:HomeScreenProps) => {
-    const repository = new Repository();
+const MainScreen = ({ navigation }: HomeScreenProps) => {
+    const repository = useMemo(() => new Repository(), []);
+    const { height, width } = Dimensions.get('window');
     const [update, updateList] = useState(false)
-    const [pokemonList, setPokemonList] = useState<IPokemonBasicData[]>([]);
+    const [pokemonList, setPokemonList] = useState<IPokemonCardData[]>([]);
 
-    useEffect(()=>{
-        setPokemonList(repository.getPokemonList())
-    },[update]);
+    useEffect(() => {
+        async function fetchPokemonList() {
+            await repository.initializer()
+            await repository.addNewPokemonsToList();
+            setPokemonList(repository.getPokemonList())
+        }
+        fetchPokemonList()
+    }, [update]);
+    const onChangeTextHandler = (searchName: string) => {
+        repository.setSearchString(searchName);
+        updateList(!update);
+    }
+
     return (
-        <View style={style.container}>
+        <View style={[style.container, { maxHeight: height }]}>
             <View style={style.pokeball}>
                 <Pokeball height={500} width={500} />
             </View>
@@ -41,14 +51,18 @@ const MainScreen = ({navigation}:HomeScreenProps) => {
                 <Text style={style.title} >Pokédex</Text>
                 <Text style={style.subTitle}>Search for Pokémon by name or using the National Pokédex number.</Text>
                 <View style={style.textInputContainer}>
-                    <Search height={24} width={24}/>
-                    <TextInput style={style.textInput} placeholder="What Pokémon are you looking for?" />
+                    <Search height={24} width={24} />
+                    <TextInput
+                        style={style.textInput}
+                        placeholder="What Pokémon are you looking for?"
+                        onChangeText={onChangeTextHandler}
+                    />
                 </View>
-                <FlatList 
+                <FlatList
                     style={style.pokemonsList}
                     data={pokemonList}
-                    renderItem={({item})=>{
-                        return (<PokemonCard pokemon={item} navigation={navigation}/>)
+                    renderItem={({ item }) => {
+                        return (<PokemonCard pokemon={item} navigation={navigation} />)
                     }}
                 />
             </View>
@@ -57,22 +71,22 @@ const MainScreen = ({navigation}:HomeScreenProps) => {
 }
 
 const style = StyleSheet.create({
-    container:{
+    container: {
         backgroundColor: 'white',
         height: '100%',
-        width: '100%',
+        width: '100%'
     },
-    optionsBar:{
+    optionsBar: {
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'flex-end',
         padding: 16
     },
-    optionsItens:{
+    optionsItens: {
         padding: 16
     },
     contentContainer: {
-        paddingHorizontal: 24,
+        paddingHorizontal: 24
     },
     pokeball: {
         width: '100%',
@@ -107,7 +121,7 @@ const style = StyleSheet.create({
         marginHorizontal: 10,
         fontFamily: 'sf-pro-display-medium',
     },
-    pokemonsList:{
+    pokemonsList: {
         marginTop: 16
     }
 });

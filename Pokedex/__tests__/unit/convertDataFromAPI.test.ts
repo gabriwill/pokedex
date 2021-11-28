@@ -6,7 +6,7 @@ describe('Tests of the convert data functions', () => {
     it('Should convert the response of API endpoint /pokemon/id to a IPokemonBasicData object', () => {
         const pokemonAPIData = JSON.parse(MockAPIResponses.pokemonIdEndpointResponse);
         const api = new API();
-        const pokemonBasicData: IPokemonBasicData = api.getPokemonBasicDataFromApiIdData(pokemonAPIData)
+        const pokemonBasicData: IPokemonCardData = api.getPokemonBasicDataFromApiIdData(pokemonAPIData)
 
         expect(pokemonBasicData).toEqual(MockData.bulbasaurBasicData)
     });

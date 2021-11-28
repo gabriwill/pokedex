@@ -1,38 +1,38 @@
 import React from "react";
 import { Dimensions, ScrollView, StyleSheet, Text, View } from "react-native";
 import PokeTypes from "../../utils/PokeTypes";
-import { CardProps } from "../../utils/Types";
 
 const StatsCard = ({ pokemon, pokemonType }: CardProps) => {
     const { height, width } = Dimensions.get('window');
-    let total =0;
+    let total = 0;
 
     return (
         <View style={[style.infoCardContainer, { width }]}>
-            <ScrollView style={{ width: '100%', height: height - 380 }}>
+            {pokemon && <ScrollView style={{ width: '100%', height: height - 380 }}>
                 <Text style={[style.infoCardTitle, { color: pokemonType.color }]}>Base Stats</Text>
-                {pokemon.stats.map((value) =>{ 
-                    total+= value.base_stat;
+                {pokemon.stats.map((value) => {
+                    total += value.base_stat;
                     return (
-                    <View key={value.stat} style={style.lineSequence}>
-                        <View style={style.titleView}>
-                            <Text style={style.title}>{value.stat}</Text>
-                        </View>
-                        <View style={style.infoView}>
-                            <Text style={style.info}>{value.base_stat}</Text>
-                        </View>
-                        <View style={style.statBarView}>
-                            <View style={[style.statBar, { backgroundColor: pokemonType.color }]} />
-                        </View>
-                        <View style={style.infoView}>
-                            <Text style={style.info}>200</Text>
-                        </View>
-                        <View style={style.infoView}>
-                            <Text style={style.info}>294</Text>
-                        </View>
+                        <View key={value.stat} style={style.lineSequence}>
+                            <View style={style.titleView}>
+                                <Text style={style.title}>{value.stat}</Text>
+                            </View>
+                            <View style={style.infoView}>
+                                <Text style={style.info}>{value.base_stat}</Text>
+                            </View>
+                            <View style={style.statBarView}>
+                                <View style={[style.statBar, { backgroundColor: pokemonType.color }]} />
+                            </View>
+                            <View style={style.infoView}>
+                                <Text style={style.info}>200</Text>
+                            </View>
+                            <View style={style.infoView}>
+                                <Text style={style.info}>294</Text>
+                            </View>
 
-                    </View>
-                )})}
+                        </View>
+                    )
+                })}
 
                 <View style={style.lineSequence}>
                     <View style={style.titleView}>
@@ -51,11 +51,11 @@ const StatsCard = ({ pokemon, pokemonType }: CardProps) => {
 
                 </View>
                 <Text style={[style.infoCardTitle, { color: pokemonType.color }]}>Type defense</Text>
-                <Text style={style.description}>The effectiveness of each type on Bulbasaur:</Text>
+                <Text style={style.description}>{`The effectiveness of each type on ${pokemon.name.capitalize()}:`}</Text>
                 <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
                     {PokeTypes.map((type) => {
                         const icon = type.icon(18, 18)
-                        const mutiple = pokemon.typesDefMultiple.find((value)=>type.name==value.type)?.multiple
+                        const mutiple = pokemon.typesDefMultiple.find((value) => type.name == value.type)?.multiple
                         return (
                             <View key={type.name} style={style.typeAttributes}>
                                 <View
@@ -69,18 +69,18 @@ const StatsCard = ({ pokemon, pokemonType }: CardProps) => {
                                         borderRadius: 4
                                     }}
                                 >{icon}</View>
-                                <Text style={style.typeMutiple}>{mutiple}</Text>
+                                <Text style={style.typeMutiple}>{mutiple == '1' ? '' : mutiple}</Text>
                             </View>
                         )
                     })}
                 </View>
 
                 <Text style={[style.infoCardTitle, { color: pokemonType.color }]}>Type Attack</Text>
-                <Text style={style.description}>The effectiveness of Bulbasaur against each type:</Text>
+                <Text style={style.description}>{`The effectiveness of ${pokemon.name.capitalize()} against each type:`}</Text>
                 <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
                     {PokeTypes.map((type) => {
                         const icon = type.icon(18, 18)
-                        const mutiple = pokemon.typesDefMultiple.find((value)=>type.name==value.type)?.multiple
+                        const mutiple = pokemon.typesAtkMultiple.find((value) => type.name == value.type)?.multiple
                         return (
                             <View key={type.name} style={style.typeAttributes}>
                                 <View
@@ -94,12 +94,12 @@ const StatsCard = ({ pokemon, pokemonType }: CardProps) => {
                                         borderRadius: 4
                                     }}
                                 >{icon}</View>
-                                <Text style={style.typeMutiple}>{mutiple}</Text>
+                                <Text style={style.typeMutiple}>{mutiple == '1' ? '' : mutiple}</Text>
                             </View>
                         )
                     })}
                 </View>
-            </ScrollView>
+            </ScrollView>}
         </View>);
 }
 

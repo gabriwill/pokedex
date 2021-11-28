@@ -1,4 +1,4 @@
-interface IPokemonBasicData {
+interface IPokemonCardData {
     id: number,
     name: string,
     image_url: string,
@@ -7,13 +7,26 @@ interface IPokemonBasicData {
     }[]
 }
 
+interface IPokemonBasicData {
+    id: number,
+    name: string,
+    types: {
+        type: string
+    }[]
+}
+
+interface IPokemonInfo {
+    id: number,
+    name: string
+}
+
 interface ITypeStatMultiple {
     type: string,
     multiple: string
 }
 
 interface IEvolutionChain {
-    evolvesTo: IPokemonBasicData,
+    evolvesTo: IPokemonCardData,
     minLevel: number
 }
 
@@ -57,6 +70,6 @@ interface Type {
 }
 
 interface CardProps {
-    pokemon: IPokemonData,
+    pokemon?: IPokemonData,
     pokemonType: Type
 }

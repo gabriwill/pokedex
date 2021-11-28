@@ -6,7 +6,7 @@ describe('Obtain data from API', () => {
     it('Should obtain pokemon basic data from API using the pokemon\'s id number', async () => {
         const id = 1;
         const api = new API();
-        const pokemonBasicData = await api.getPokemonBasicDataById(id);
+        const pokemonBasicData = await api.getPokemonCardDataById(id);
 
         expect(pokemonBasicData).toEqual(MockData.bulbasaurBasicData)
     });
@@ -72,6 +72,13 @@ describe('Obtain data from API', () => {
         const unit = 10;
         const pokemonList = await api.getPokemonListByName('123x4', unit, page);
         expect(pokemonList).toEqual([]);
+    });
+
+    it('Should obtain a list of all pokemon\'s basic data', async () => {
+        const api = new API();
+        const pokemonList = await api.getAllPokemons();
+
+        expect(pokemonList).toEqual(MockData.allPokemonInfo);
     });
 });
 

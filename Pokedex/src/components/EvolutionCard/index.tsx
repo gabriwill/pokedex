@@ -1,11 +1,11 @@
 import React from "react";
 import { Dimensions, Image, ScrollView, StyleSheet, Text, View } from "react-native";
-import { CardProps, pokemonDataToPokemonBasicData } from "../../utils/Types";
+import { pokemonDataToPokemonBasicData } from "../../utils/Types";
 
 const EvolutionCard = ({ pokemon, pokemonType }: CardProps) => {
     const { height, width } = Dimensions.get('window');
 
-    const idToIDString= (id: number)=>{
+    const idToIDString = (id: number) => {
         let text = `#${id}`
         if (id < 10) {
             text = `#00${id}`
@@ -15,22 +15,20 @@ const EvolutionCard = ({ pokemon, pokemonType }: CardProps) => {
         return text
     }
 
-    const capitalize=(s: string)=> s[0].toUpperCase() + s.slice(1);
-
     return (
         <View style={[style.infoCardContainer, { width }]}>
-            <ScrollView style={{ width: '100%', height: height - 380 }}>
+            {pokemon && <ScrollView style={{ width: '100%', height: height - 380 }}>
                 <Text style={[style.infoCardTitle, { color: pokemonType.color }]}>Evolution Chart</Text>
                 {pokemon.evolutionChain.map((value, index, arr) => {
-                    let evolvesFrom =pokemonDataToPokemonBasicData(pokemon);
-                    if(index!=0){
-                        evolvesFrom = arr[index-1].evolvesTo;
+                    let evolvesFrom = pokemonDataToPokemonBasicData(pokemon);
+                    if (index != 0) {
+                        evolvesFrom = arr[index - 1].evolvesTo;
                     }
                     const minLevel = value.minLevel;
                     const evolvesTo = value.evolvesTo;
 
                     return (
-                        <View key={minLevel} style={style.lineSequence}>
+                        <View key={String(evolvesTo.name)} style={style.lineSequence}>
                             <View>
                                 <View style={style.imgView}>
                                     <Image
@@ -43,7 +41,7 @@ const EvolutionCard = ({ pokemon, pokemonType }: CardProps) => {
                                 </View>
                                 <View style={style.dataContent}>
                                     <Text style={style.evolutionId}>{idToIDString(evolvesFrom.id)}</Text>
-                                    <Text style={style.evolutionName}>{capitalize(evolvesFrom.name)}</Text>
+                                    <Text style={style.evolutionName}>{evolvesFrom.name.capitalize()}</Text>
                                 </View>
                             </View>
                             <Text style={style.textLevel}>{`(level ${minLevel})`}</Text>
@@ -59,14 +57,14 @@ const EvolutionCard = ({ pokemon, pokemonType }: CardProps) => {
                                 </View>
                                 <View style={style.dataContent}>
                                     <Text style={style.evolutionId}>{idToIDString(evolvesTo.id)}</Text>
-                                    <Text style={style.evolutionName}>{capitalize(evolvesTo.name)}</Text>
+                                    <Text style={style.evolutionName}>{evolvesTo.name.capitalize()}</Text>
                                 </View>
                             </View>
                         </View>
                     )
                 })}
-                
-            </ScrollView>
+
+            </ScrollView>}
         </View>);
 }
 
@@ -80,6 +78,7 @@ const style = StyleSheet.create({
         backgroundColor: '#fff',
         paddingTop: 40,
         paddingHorizontal: 40,
+        minHeight: 200
     },
     infoCardTitle: {
         fontSize: 20,
