@@ -1,4 +1,5 @@
 import { Repository } from "../../src/repository/Repository";
+import { SortType } from "../../src/repository/SortType";
 import { MockData } from "../testUtils/MockData";
 
 describe('Tests the repository layer of application', () => {
@@ -72,6 +73,65 @@ describe('Tests the repository layer of application', () => {
         await repository.addNewPokemonsToList();
 
         expect(repository.getPokemonList()).toEqual(MockData.firstTwentyPokemons)
+    });
+
+    it('Should obtain a list of ten last pokemon\'s basic data from API when the search string is empty and the sortType is numerical descendent', async () => {
+        const repository = new Repository();
+        await repository.initializer();
+        repository.setSearchString('');
+        repository.setSortType(SortType.NUMERIC_DESC);
+        await repository.addNewPokemonsToList();
+
+        expect(repository.getPokemonList()).toEqual(MockData.searchEmptyStringNumericalDesc)
+    });
+
+    it('Should obtain a list of ten pokemon\'s from API in alphabetical descendent order when the search string is empty and the sortType is alphabetical descendent', async () => {
+        const repository = new Repository();
+        await repository.initializer();
+        repository.setSearchString('');
+        repository.setSortType(SortType.ALPHABETIC_DESC);
+        await repository.addNewPokemonsToList();
+
+        expect(repository.getPokemonList()).toEqual(MockData.searchEmptyStringAlphbeticDesc)
+    });
+
+    it('Should obtain a list of ten pokemon\'s from API in alphabetical order when the search string is empty and the sortType is alphabetical', async () => {
+        const repository = new Repository();
+        await repository.initializer();
+        repository.setSearchString('');
+        repository.setSortType(SortType.ALPHABETIC);
+        await repository.addNewPokemonsToList();
+
+        expect(repository.getPokemonList()).toEqual(MockData.searchEmptyStringAlphbetic)
+    });
+
+    it('Should obtain a list of ten first pokemon\'s from API in alphabetical order that contains the pattern ar in its name when the sortType is alphabetical and search string is \'ar\'', async () => {
+        const repository = new Repository();
+        await repository.initializer();
+        repository.setSearchString('ar');
+        repository.setSortType(SortType.ALPHABETIC);
+        await repository.addNewPokemonsToList();
+
+        expect(repository.getPokemonList()).toEqual(MockData.tenPokemonWitharAlphabetic)
+    });
+    it('Should obtain a list of ten pokemon\'s from API in alphabetical descendent order that contains the pattern ar in its name when the sortType is alphabetical_desc and search string is \'ar\'', async () => {
+        const repository = new Repository();
+        await repository.initializer();
+        repository.setSearchString('ar');
+        repository.setSortType(SortType.ALPHABETIC_DESC);
+        await repository.addNewPokemonsToList();
+
+        expect(repository.getPokemonList()).toEqual(MockData.tenPokemonWitharAlphabeticDesc)
+    });
+
+    it('Should obtain a list of ten last pokemon\'s from API order that contains the pattern ar in its name when the sortType is numerical descendent and search string is \'ar\'', async () => {
+        const repository = new Repository();
+        await repository.initializer();
+        repository.setSearchString('ar');
+        repository.setSortType(SortType.NUMERIC_DESC);
+        await repository.addNewPokemonsToList();
+
+        expect(repository.getPokemonList()).toEqual(MockData.tenPokemonWitharNumericalDesc)
     });
 });
 

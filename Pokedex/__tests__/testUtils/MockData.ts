@@ -1854,5 +1854,746 @@ export const MockData = {
             ]
         }
     ],
+    searchEmptyStringNumericalDesc: [
+        {
+            id: 10220,
+            name: "toxtricity-low-key-gmax",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10220.png",
+            types: [
+                {
+                    type: "electric"
+                },
+                {
+                    type: "poison"
+                }
+            ]
+        },
+        {
+            id: 10219,
+            name: "urshifu-rapid-strike-gmax",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10219.png",
+            types: [
+                {
+                    type: "fighting"
+                },
+                {
+                    type: "water"
+                }
+            ]
+        },
+        {
+            id: 10218,
+            name: "urshifu-single-strike-gmax",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10218.png",
+            types: [
+                {
+                    type: "fighting"
+                },
+                {
+                    type: "dark"
+                }
+            ]
+        },
+        {
+            id: 10217,
+            name: "eternatus-eternamax",
+            image_url: null,
+            types: [
+                {
+                    type: "poison"
+                },
+                {
+                    type: "dragon"
+                }
+            ]
+        },
+        {
+            id: 10216,
+            name: "duraludon-gmax",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10216.png",
+            types: [
+                {
+                    type: "steel"
+                },
+                {
+                    type: "dragon"
+                }
+            ]
+        },
+        {
+            id: 10215,
+            name: "copperajah-gmax",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10215.png",
+            types: [
+                {
+                    type: "steel"
+                }
+            ]
+        },
+        {
+            id: 10214,
+            name: "alcremie-gmax",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10214.png",
+            types: [
+                {
+                    type: "fairy"
+                }
+            ]
+        },
+        {
+            id: 10213,
+            name: "grimmsnarl-gmax",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10213.png",
+            types: [
+                {
+                    type: "dark"
+                },
+                {
+                    type: "fairy"
+                }
+            ]
+        },
+        {
+            id: 10212,
+            name: "hatterene-gmax",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10212.png",
+            types: [
+                {
+                    type: "psychic"
+                },
+                {
+                    type: "fairy"
+                }
+            ]
+        },
+        {
+            id: 10211,
+            name: "centiskorch-gmax",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10211.png",
+            types: [
+                {
+                    type: "fire"
+                },
+                {
+                    type: "bug"
+                }
+            ]
+        }
+    ],
+    searchEmptyStringAlphbeticDesc: [
+        {
+            id: 10120,
+            name: "zygarde-complete",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10120.png",
+            types: [
+                {
+                    type: "dragon"
+                },
+                {
+                    type: "ground"
+                }
+            ]
+        },
+        {
+            id: 10119,
+            name: "zygarde-50",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10119.png",
+            types: [
+                {
+                    type: "dragon"
+                },
+                {
+                    type: "ground"
+                }
+            ]
+        },
+        {
+            id: 10118,
+            name: "zygarde-10",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10118.png",
+            types: [
+                {
+                    type: "dragon"
+                },
+                {
+                    type: "ground"
+                }
+            ]
+        },
+        {
+            id: 718,
+            name: "zygarde",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/718.png",
+            types: [
+                {
+                    type: "dragon"
+                },
+                {
+                    type: "ground"
+                }
+            ]
+        },
+        {
+            id: 634,
+            name: "zweilous",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/634.png",
+            types: [
+                {
+                    type: "dark"
+                },
+                {
+                    type: "dragon"
+                }
+            ]
+        },
+        {
+            id: 41,
+            name: "zubat",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/41.png",
+            types: [
+                {
+                    type: "poison"
+                },
+                {
+                    type: "flying"
+                }
+            ]
+        },
+        {
+            id: 570,
+            name: "zorua",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/570.png",
+            types: [
+                {
+                    type: "dark"
+                }
+            ]
+        },
+        {
+            id: 571,
+            name: "zoroark",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/571.png",
+            types: [
+                {
+                    type: "dark"
+                }
+            ]
+        },
+        {
+            id: 10171,
+            name: "zigzagoon-galar",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10171.png",
+            types: [
+                {
+                    type: "dark"
+                },
+                {
+                    type: "normal"
+                }
+            ]
+        },
+        {
+            id: 263,
+            name: "zigzagoon",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/263.png",
+            types: [
+                {
+                    type: "normal"
+                }
+            ]
+        }
+    ],
+    searchEmptyStringAlphbetic: [
+        {
+            id: 460,
+            name: "abomasnow",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/460.png",
+            types: [
+                {
+                    type: "grass"
+                },
+                {
+                    type: "ice"
+                }
+            ]
+        },
+        {
+            id: 10060,
+            name: "abomasnow-mega",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10060.png",
+            types: [
+                {
+                    type: "grass"
+                },
+                {
+                    type: "ice"
+                }
+            ]
+        },
+        {
+            id: 63,
+            name: "abra",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/63.png",
+            types: [
+                {
+                    type: "psychic"
+                }
+            ]
+        },
+        {
+            id: 359,
+            name: "absol",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/359.png",
+            types: [
+                {
+                    type: "dark"
+                }
+            ]
+        },
+        {
+            id: 10057,
+            name: "absol-mega",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10057.png",
+            types: [
+                {
+                    type: "dark"
+                }
+            ]
+        },
+        {
+            id: 617,
+            name: "accelgor",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/617.png",
+            types: [
+                {
+                    type: "bug"
+                }
+            ]
+        },
+        {
+            id: 10026,
+            name: "aegislash-blade",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10026.png",
+            types: [
+                {
+                    type: "steel"
+                },
+                {
+                    type: "ghost"
+                }
+            ]
+        },
+        {
+            id: 681,
+            name: "aegislash-shield",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/681.png",
+            types: [
+                {
+                    type: "steel"
+                },
+                {
+                    type: "ghost"
+                }
+            ]
+        },
+        {
+            id: 142,
+            name: "aerodactyl",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/142.png",
+            types: [
+                {
+                    type: "rock"
+                },
+                {
+                    type: "flying"
+                }
+            ]
+        },
+        {
+            id: 10042,
+            name: "aerodactyl-mega",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10042.png",
+            types: [
+                {
+                    type: "rock"
+                },
+                {
+                    type: "flying"
+                }
+            ]
+        }
+    ],
+    tenPokemonWitharAlphabetic: [
+        {
+            id: 334,
+            name: "altaria",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/334.png",
+            types: [
+                {
+                    type: "dragon"
+                },
+                {
+                    type: "flying"
+                }
+            ]
+        },
+        {
+            id: 10067,
+            name: "altaria-mega",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10067.png",
+            types: [
+                {
+                    type: "dragon"
+                },
+                {
+                    type: "fairy"
+                }
+            ]
+        },
+        {
+            id: 181,
+            name: "ampharos",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/181.png",
+            types: [
+                {
+                    type: "electric"
+                }
+            ]
+        },
+        {
+            id: 10045,
+            name: "ampharos-mega",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10045.png",
+            types: [
+                {
+                    type: "electric"
+                },
+                {
+                    type: "dragon"
+                }
+            ]
+        },
+        {
+            id: 752,
+            name: "araquanid",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/752.png",
+            types: [
+                {
+                    type: "water"
+                },
+                {
+                    type: "bug"
+                }
+            ]
+        },
+        {
+            id: 10153,
+            name: "araquanid-totem",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10153.png",
+            types: [
+                {
+                    type: "water"
+                },
+                {
+                    type: "bug"
+                }
+            ]
+        },
+        {
+            id: 24,
+            name: "arbok",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/24.png",
+            types: [
+                {
+                    type: "poison"
+                }
+            ]
+        },
+        {
+            id: 59,
+            name: "arcanine",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/59.png",
+            types: [
+                {
+                    type: "fire"
+                }
+            ]
+        },
+        {
+            id: 493,
+            name: "arceus",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/493.png",
+            types: [
+                {
+                    type: "normal"
+                }
+            ]
+        },
+        {
+            id: 566,
+            name: "archen",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/566.png",
+            types: [
+                {
+                    type: "rock"
+                },
+                {
+                    type: "flying"
+                }
+            ]
+        }
+    ],
+    tenPokemonWitharAlphabeticDesc: [
+        {
+            id: 10120,
+            name: "zygarde-complete",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10120.png",
+            types: [
+                {
+                    type: "dragon"
+                },
+                {
+                    type: "ground"
+                }
+            ]
+        },
+        {
+            id: 10119,
+            name: "zygarde-50",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10119.png",
+            types: [
+                {
+                    type: "dragon"
+                },
+                {
+                    type: "ground"
+                }
+            ]
+        },
+        {
+            id: 10118,
+            name: "zygarde-10",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10118.png",
+            types: [
+                {
+                    type: "dragon"
+                },
+                {
+                    type: "ground"
+                }
+            ]
+        },
+        {
+            id: 718,
+            name: "zygarde",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/718.png",
+            types: [
+                {
+                    type: "dragon"
+                },
+                {
+                    type: "ground"
+                }
+            ]
+        },
+        {
+            id: 571,
+            name: "zoroark",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/571.png",
+            types: [
+                {
+                    type: "dark"
+                }
+            ]
+        },
+        {
+            id: 10171,
+            name: "zigzagoon-galar",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10171.png",
+            types: [
+                {
+                    type: "dark"
+                },
+                {
+                    type: "normal"
+                }
+            ]
+        },
+        {
+            id: 893,
+            name: "zarude",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/893.png",
+            types: [
+                {
+                    type: "dark"
+                },
+                {
+                    type: "grass"
+                }
+            ]
+        },
+        {
+            id: 10167,
+            name: "zapdos-galar",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10167.png",
+            types: [
+                {
+                    type: "fighting"
+                },
+                {
+                    type: "flying"
+                }
+            ]
+        },
+        {
+            id: 10176,
+            name: "yamask-galar",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10176.png",
+            types: [
+                {
+                    type: "ground"
+                },
+                {
+                    type: "ghost"
+                }
+            ]
+        },
+        {
+            id: 10164,
+            name: "weezing-galar",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10164.png",
+            types: [
+                {
+                    type: "poison"
+                },
+                {
+                    type: "fairy"
+                }
+            ]
+        }
+    ],
+    tenPokemonWitharNumericalDesc: [
+        {
+            id: 10213,
+            name: "grimmsnarl-gmax",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10213.png",
+            types: [
+                {
+                    type: "dark"
+                },
+                {
+                    type: "fairy"
+                }
+            ]
+        },
+        {
+            id: 10198,
+            name: "garbodor-gmax",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10198.png",
+            types: [
+                {
+                    type: "poison"
+                }
+            ]
+        },
+        {
+            id: 10193,
+            name: "gengar-gmax",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10193.png",
+            types: [
+                {
+                    type: "ghost"
+                },
+                {
+                    type: "poison"
+                }
+            ]
+        },
+        {
+            id: 10187,
+            name: "charizard-gmax",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10187.png",
+            types: [
+                {
+                    type: "fire"
+                },
+                {
+                    type: "flying"
+                }
+            ]
+        },
+        {
+            id: 10177,
+            name: "stunfisk-galar",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10177.png",
+            types: [
+                {
+                    type: "ground"
+                },
+                {
+                    type: "steel"
+                }
+            ]
+        },
+        {
+            id: 10176,
+            name: "yamask-galar",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10176.png",
+            types: [
+                {
+                    type: "ground"
+                },
+                {
+                    type: "ghost"
+                }
+            ]
+        },
+        {
+            id: 10175,
+            name: "darmanitan-zen-galar",
+            image_url: null,
+            types: [
+                {
+                    type: "ice"
+                },
+                {
+                    type: "fire"
+                }
+            ]
+        },
+        {
+            id: 10174,
+            name: "darmanitan-standard-galar",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10174.png",
+            types: [
+                {
+                    type: "ice"
+                }
+            ]
+        },
+        {
+            id: 10173,
+            name: "darumaka-galar",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10173.png",
+            types: [
+                {
+                    type: "ice"
+                }
+            ]
+        },
+        {
+            id: 10172,
+            name: "linoone-galar",
+            image_url: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10172.png",
+            types: [
+                {
+                    type: "dark"
+                },
+                {
+                    type: "normal"
+                }
+            ]
+        }
+    ]
 
 }

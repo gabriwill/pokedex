@@ -1,4 +1,5 @@
 import { API } from "../api/API";
+import { SortType } from "./SortType";
 
 export class Repository {
     private unit = 10;
@@ -8,13 +9,50 @@ export class Repository {
     private searchString: string = '';
     private searchIdCode: string = '';
     private pokemonInfoList: IPokemonInfo[] = [];
+    private sortFunction: (a: IPokemonInfo, b: IPokemonInfo) => number;
+
 
     constructor() {
         this.api = new API();
         this.page = 0;
+        this.sortFunction = (a, b) => (a.id - b.id);
     }
     getPokemonList() {
         return this.pokemonList
+    }
+
+    setSortType(type: SortType) {
+        switch (type) {
+            case SortType.ALPHABETIC:
+                this.sortFunction = (a, b) => {
+                    if (a.name > b.name) {
+                        return 1;
+                    }
+                    if (a.name < b.name) {
+                        return -1;
+                    }
+                    return 0;
+                };
+                break;
+            case SortType.ALPHABETIC_DESC:
+                this.sortFunction = (a, b) => {
+                    if (a.name < b.name) {
+                        return 1;
+                    }
+                    if (a.name > b.name) {
+                        return -1;
+                    }
+                    return 0;
+                };
+                break;
+            case SortType.NUMERIC_DESC:
+                this.sortFunction = (a, b) => (b.id - a.id);
+                break;
+            case SortType.NUMERIC_ASC:
+                this.sortFunction = (a, b) => (a.id - b.id);
+                break;
+        }
+
     }
 
     async initializer() {
@@ -38,7 +76,7 @@ export class Repository {
         const newEntries: IPokemonCardData[] = []
         await Promise.all(this.pokemonInfoList
             .filter(({ name }) => name.match(this.searchString))
-            .sort((a, b) => a.id - b.id)
+            .sort(this.sortFunction)
             .slice(this.page * this.unit, (this.page + 1) * this.unit)
             .map(async ({ id }) => {
                 const newItems = await this.api.getPokemonCardDataById(id);
@@ -46,7 +84,7 @@ export class Repository {
 
             })
         );
-        newEntries.sort((a, b) => a.id - b.id)
+        newEntries.sort(this.sortFunction)
         if (this.searchIdCode != idCode) return [];
         this.page++;
         this.pokemonList.push(...newEntries)
