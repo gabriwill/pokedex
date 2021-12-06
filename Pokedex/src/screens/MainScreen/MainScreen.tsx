@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Dimensions, FlatList, StyleSheet, Text, TextInput, View } from 'react-native'
 import PokemonCard from "../../components/PokemonCard";
 import Pokeball from '../../../assets/patterns/pokeball-grad.svg';
@@ -10,6 +10,9 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../RootStackParamsList";
 import { Repository } from "../../repository/Repository";
 import LoadingIndicator from "../../components/LoadingIndicator";
+import RBSheet from 'react-native-raw-bottom-sheet'
+import { TouchableOpacity } from "react-native-gesture-handler";
+import SortOptions from "../../components/SortOptions";
 
 export type HomeScreenProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
@@ -18,26 +21,44 @@ const MainScreen = ({ navigation }: HomeScreenProps) => {
     const { height, width } = Dimensions.get('window');
     const [update, setUpdate] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [asyncId, setAsyncId] = useState('')
     const [pokemonList, setPokemonList] = useState<IPokemonCardData[]>([]);
+    const refRBSheet = useRef<RBSheet>(null);
 
     async function fetchPokemonList() {
         setLoading(true)
+        const id = asyncId
         await repository.initializer()
         await repository.addNewPokemonsToList();
-        setPokemonList(repository.getPokemonList())
-        setLoading(false)
+        if (id == asyncId) {
+            setPokemonList(repository.pokemonList);
+            setLoading(false);
+        }
     }
 
     useEffect(() => {
         fetchPokemonList()
     }, [update]);
-    const onChangeTextHandler = (searchName: string) => {
-        repository.setSearchString(searchName.trim());
+
+    const onChangeSearchString = (searchName: string) => {
+        repository.searchString = searchName;
+        setAsyncId(String(Math.random()))
         setUpdate(!update);
     }
 
     return (
         <View style={[style.container, { maxHeight: height }]}>
+            <RBSheet ref={refRBSheet}
+                height={480}
+                closeOnDragDown={true}
+                customStyles={{
+                    container: {
+                        borderRadius: 20,
+                    }
+                }}
+            >
+                <SortOptions repository={repository} onChangeSortType={onChangeSearchString} />
+            </RBSheet>
             <View style={style.pokeball}>
                 <Pokeball height={500} width={500} />
             </View>
@@ -45,9 +66,13 @@ const MainScreen = ({ navigation }: HomeScreenProps) => {
                 <View style={style.optionsItens}>
                     <Generations height={32} width={32} />
                 </View>
-                <View style={style.optionsItens}>
-                    <Sort height={32} width={32} />
-                </View>
+                <TouchableOpacity
+                    onPress={() => refRBSheet.current?.open()}
+                >
+                    <View style={style.optionsItens}>
+                        <Sort height={32} width={32} />
+                    </View>
+                </TouchableOpacity>
                 <View style={style.optionsItens}>
                     <Filter height={32} width={32} />
                 </View>
@@ -60,7 +85,7 @@ const MainScreen = ({ navigation }: HomeScreenProps) => {
                     <TextInput
                         style={style.textInput}
                         placeholder="What Pokémon are you looking for?"
-                        onChangeText={onChangeTextHandler}
+                        onChangeText={onChangeSearchString}
                     />
                 </View>
                 <FlatList
