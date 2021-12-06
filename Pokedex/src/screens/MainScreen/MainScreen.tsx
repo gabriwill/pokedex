@@ -78,7 +78,7 @@ const MainScreen = ({ navigation }: HomeScreenProps) => {
                     <Filter height={32} width={32} />
                 </View>
             </View>
-            <View style={style.contentContainer}>
+            <View style={[style.contentContainer, { maxHeight: height - 120 }]}>
                 <Text style={style.title} >Pokédex</Text>
                 <Text style={style.subTitle}>Search for Pokémon by name or using the National Pokédex number.</Text>
                 <View style={style.textInputContainer}>
