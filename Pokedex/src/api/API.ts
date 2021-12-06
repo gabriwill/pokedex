@@ -5,7 +5,7 @@ import '../@types/string.extensions';
 const baseURL = "https://pokeapi.co/api/v2/";
 
 
-export class API {
+export class API implements IAPI {
     async getAllPokemons(): Promise<IPokemonInfo[]> {
         const response = await axios.get<IPokemonListReponse>(baseURL + 'pokemon?limit=2000').then(res => res.data);
         const data = response.results.map(({ name, url }) => {

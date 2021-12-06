@@ -15,6 +15,7 @@ import AboutCard from "../../components/AboutCard";
 import EvolutionCard from "../../components/EvolutionCard";
 import StatsCard from "../../components/StatsCard";
 import { Repository } from "../../repository/Repository";
+import { API } from "../../api/API";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'PokeProfile'>;
 
@@ -26,7 +27,7 @@ const PokeProfileScreen = ({ navigation, route }: Props) => {
     const [pokemonData, setPokemonData] = useState<IPokemonData | undefined>();
     useEffect(() => {
         async function fetchData() {
-            const data = await Repository.getPokemonData(pokemon.id);
+            const data = await Repository.getPokemonData(new API(), pokemon.id);
             setPokemonData(data);
         }
         fetchData();

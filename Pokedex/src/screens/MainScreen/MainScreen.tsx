@@ -13,11 +13,12 @@ import LoadingIndicator from "../../components/LoadingIndicator";
 import RBSheet from 'react-native-raw-bottom-sheet'
 import { TouchableOpacity } from "react-native-gesture-handler";
 import SortOptions from "../../components/SortOptions";
+import { API } from "../../api/API";
 
 export type HomeScreenProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
 const MainScreen = ({ navigation }: HomeScreenProps) => {
-    const repository = useMemo(() => new Repository(), []);
+    const repository = useMemo(() => new Repository(new API()), []);
     const { height, width } = Dimensions.get('window');
     const [update, setUpdate] = useState(false)
     const [loading, setLoading] = useState(false)

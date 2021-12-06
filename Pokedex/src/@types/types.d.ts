@@ -74,3 +74,9 @@ interface CardProps {
     pokemon?: IPokemonData,
     pokemonType: Type
 }
+
+interface IAPI {
+    getAllPokemons: () => Promise<IPokemonInfo[]>
+    getPokemonCardDataById: (id: number) => Promise<IPokemonCardData>
+    getPokemonDataById: (id: number) => Promise<IPokemonData>
+}

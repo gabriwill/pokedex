@@ -1,10 +1,8 @@
-import { API } from "../api/API";
 import { SortType } from "./SortType";
-
 export class Repository {
     private _unit = 10;
     private _page = 0;
-    private _api: API;
+    private _api: IAPI;
     private _pokemonList: IPokemonCardData[] = [];
     private _searchString: string = '';
     private _searchIdCode: string = '';
@@ -13,8 +11,8 @@ export class Repository {
     private _sortType: SortType = SortType.NUMERIC_ASC;
 
 
-    constructor() {
-        this._api = new API();
+    constructor(api: IAPI) {
+        this._api = api;
         this._page = 0;
         this.sortFunction = (a, b) => (a.id - b.id);
     }
@@ -108,8 +106,7 @@ export class Repository {
         return newEntries
     }
 
-    static async getPokemonData(id: number): Promise<IPokemonData> {
-        const api = new API();
+    static async getPokemonData(api: IAPI, id: number): Promise<IPokemonData> {
         return await api.getPokemonDataById(id)
     }
 }
