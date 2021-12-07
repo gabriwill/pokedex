@@ -1,81 +1,64 @@
-<br />
-<p align="center">
-    <img src="design/ProjectMockup.png" alt="Logo" width="500">
+# Pokédex
+Este repositório é a minha solução para o desafio do Pokédex da [DevChallenge](https://www.devchallenge.com.br/challenges).
 
-  <h3 align="center">Pokedex by <a href="https://umpontoseis.com/">umpontoseis</a></h3>
- <br />
-  <p align="center">
-     App para buscar pokémons
-       <br />
-    <br />
-    <a href="https://github.com/Lorenalgm/pokedex">Desafio</a>
-    ·
-    <a href="https://www.devchallenge.com.br/">DevChallenge</a>
-  </p>
-</p>
+| <img src=".github/pokedex.gif.png"> | <img src=".github/pokedex-1.gif.png"> | 
+| ---------------------------------------------- | -------------------------------------------- | 
 
-## Índice
+## 🎌 Objetivos
 
-* [Devchallenge](#devchallenge) 
-* [Desafio](#desafio)
-* [Techs](#techs)
-* [Como começar](#como-começar)
-* [Dicas](#dicas)  
-  * [Dados](#dados)
-  * [Modelo](#modelo)
-  * [Imagens](#imagens)
-  * [Icones](#icones)
-  * [Tipo de fonte](#tipo-de-fonte)
-* [Compartilhe](#compartilhe)
+- Aprender e práticar conhecimentos de react-native e typescript.
 
-# Devchallenge
-<a href="https://devchallenge.now.sh/"> DevChallenge</a> permite que você evolua suas skills como programador! Participe da nossa <a href="https://discord.gg/yvYXhGj">comunidade</a> o/
+## 🛠 Tecnologias
 
-# Desafio
-Seu desafio é criar um app para buscar pokémons, filtrando por tipos, além de visualizar mais informações dos personagens.
+- [React Native](https://reactnative.dev)
 
-## Requisitos:
-- Criar uma tela inicial listando todos os pokemons<br>
-- Adicionar filtros, podendo ser por: tipos, fraquezas, alturas, pesos e quantitativo de números<br>
-- Ao clicar em um personagem, o usuário será redirecionado para o perfil do mesmo, onde conterá mais informações como dados de treinamento, inicadores, tipos de defesa e evoluções.
+## 📁 Libraries
 
-## Requisitos extras:
-- Adicionar opção para ordenar por ordem alfabética ou numeração
-- Adicionar filtro por gerações de pokemons
+- [Axios](https://www.npmjs.com/package/axios)
+- [React Navigation](https://reactnavigation.org/docs/getting-started/)
+- [React Navigation Shared Element](https://www.npmjs.com/package/react-navigation-shared-element)
+- [React Native Raw Bottom Sheet](https://www.npmjs.com/package/react-native-raw-bottom-sheet)
+- [React Native Linear Gradient](https://www.npmjs.com/package/react-native-linear-gradient)
+- [React Native SVG](https://www.npmjs.com/package/react-native-svg)
+- [React Native Masked View](https://www.npmjs.com/package/@react-native-community/masked-view)
 
-# Techs: 
-- React Native, Vue Native, Flutter ou a linguagem que você preferir :)
+## 📱 Telas do App
 
-# Como começar:
-1 - Use esse template (clicando em Use this template) ou faça um fork deste repositório com o código inicial<br>
-2 - Leia as instruções no readme.md<br>
-3 - Comece a codar! Sinta-se livre para utilizar o fluxo de trabalho que ache mais confortável<br>
-4 - Compartilhe seu resultado com a comunidade! #devchallenge
+### **Tela inicial**
 
-# Dicas
+| <img src=".github/Screenshot_2021.11.30_22.05.46.757.png"> | <img src=".github/Screenshot_2021.11.30_22.06.55.673.png"> |  |
+| ---------------------------------------------- | -------------------------------------------- | ------------------------------------------- |
 
-## Dados:
-Para listar os dados, você pode utilizar os dados na API da PokéApi, dá uma olhadinha na documentação: https://pokeapi.co/
+### Menu de ordenação
 
-## Modelo:
-O modelo final do app está disponível na pasta `./design` e também no Figma da umpontoseis: 
-https://www.figma.com/file/THLxZSlOoUYMZrjFg0Kl1M/Pok%C3%A9dex?node-id=218%3A4647
+| <img src=".github/Screenshot_2021.12.06_21.28.29.152.png"> | <img src=".github/Screenshot_2021.12.06_21.28.38.695.png"> |  |
+| ---------------------------------------------- | -------------------------------------------- | ------------------------------------------- |
 
-## Icones
-Os ícones estão disponíveis na pasta `./assets/icons`
+### Tela de detalhes
 
-## Tipo de fonte:
-- SF pro display. Disponível na pasta `./assets/fonts`
+| <img src=".github/Screenshot_2021.11.30_22.06.06.872.png"> | <img src=".github/Screenshot_2021.11.30_22.06.20.573.png"> |  |
+| ---------------------------------------------- | -------------------------------------------- | ------------------------------------------- |
 
-# Compartilhe!
-Inicie seu projeto utilizando esse template no seu github como um repositório público<br>
-Faça um print, gif ou vídeo e compartilhe o resultado com a #devchallenge ou marcando nosso perfil @devchallenge!<br>
+| <img src=".github/Screenshot_2021.11.30_22.06.17.040.png"> | <img src=".github/Screenshot_2021.11.30_22.06.28.456.png"> |  |
+| ---------------------------------------------- | -------------------------------------------- | ------------------------------------------- |
 
-Desafio criado por  <a href="https://umpontoseis.com/">umpontoseis</a> :)
+## ✨ Pré-requisitos
 
-# Comunidade DevChallenge
-Site: https://www.devchallenge.com.br/ <br>
-Discord: https://discord.gg/yvYXhGj <br>
-Linkedin: https://www.linkedin.com/company/devchallenge/<br>
-Twitter: https://twitter.com/dev_challenge<br>
-Instagram: https://www.instagram.com/devchallenge/<br>
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+[Git](https://git-scm.com), [nodejs](https://nodejs.org/en/) e o [React Native](https://reactnative.dev/docs/environment-setup) devidamente configurados.
+
+## 🚀 Getting Started
+
+- Clone este repositório.
+```
+git clone https://github.com/gabriwill/pokedex.git
+```
+- Execute o comando `npm install` no diretório `Pokedex`.
+
+## :octocat: Autor
+
+Feito com 👨🏻‍💻 por Gabriel Willans 
+
+👋🏽 Entre em contato!
+
+[![Linkedin Badge](https://img.shields.io/badge/-Gabriel-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/gabriel-willans-780754200/)](https://www.linkedin.com/in/gabriel-willans-780754200/) [![Outlook Badge](https://img.shields.io/badge/-g.willans@outlook.com-00a0ee?style=flat-square&logo=microsoftoutlook&logoColor=white&link=mailto:g.willans@outlook.com)](mailto:g.willans@outlook.com)

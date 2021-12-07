@@ -68,7 +68,7 @@ export class Repository {
 
     public set searchString(newString: string) {
         if (!newString) this._searchString = '';
-        else this._searchString = newString.trim();
+        else this._searchString = newString.toLowerCase().trim();
         this._searchIdCode = '';
         this._pokemonList = [];
         this._page = 0;
