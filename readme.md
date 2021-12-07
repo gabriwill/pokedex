@@ -1,7 +1,7 @@
 # Pokédex
 Este repositório é a minha solução para o desafio do Pokédex da [DevChallenge](https://www.devchallenge.com.br/challenges).
 
-| <img src=".github/pokedex.gif.png"> | <img src=".github/pokedex-1.gif.png"> | 
+| <img src=".github/pokedex.gif"> | <img src=".github/pokedex-1.gif"> | 
 | ---------------------------------------------- | -------------------------------------------- | 
 
 ## 🎌 Objetivos
